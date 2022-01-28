@@ -9,7 +9,11 @@ configuration:
     is_active: isActive
     require_email_to_view: requireEmailToView
     updated_at: updatedAt
-  custom_root_fields: {}
+  custom_root_fields:
+    insert: insertDocLinks
+    insert_one: insertDocLink
+    select: docLinks
+    select_by_pk: docLink
 object_relationships:
 - name: doc
   using:
@@ -22,3 +26,43 @@ array_relationships:
       table:
         name: doc_visits
         schema: public
+insert_permissions:
+- permission:
+    backend_only: false
+    check:
+      doc:
+        user_id:
+          _eq: X-Hasura-User-Id
+    columns:
+    - doc_id
+    - download_allowed
+    - is_active
+    - passcode
+    - require_email_to_view
+  role: user
+select_permissions:
+- permission:
+    columns:
+    - download_allowed
+    - id
+    - is_active
+    - passcode
+    - require_email_to_view
+    filter: {}
+    limit: 0
+  role: public
+- permission:
+    columns:
+    - download_allowed
+    - is_active
+    - require_email_to_view
+    - passcode
+    - created_at
+    - updated_at
+    - doc_id
+    - id
+    filter:
+      doc:
+        user_id:
+          _eq: X-Hasura-User-Id
+  role: user
