@@ -5,7 +5,6 @@ configuration:
   custom_column_names:
     created_at: createdAt
     file_id: fileId
-    name: nameTestDeployments
     updated_at: updatedAt
     user_id: userId
   custom_root_fields: {}
