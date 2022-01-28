@@ -108,8 +108,8 @@ export function CreateLinkSlideOver({ docId }: { docId: string }) {
                           <div className="flex items-start">
                             <div className="h-5 flex items-center">
                               <input
-                                id="comments"
-                                name="comments"
+                                id="require-email"
+                                name="require-email"
                                 type="checkbox"
                                 className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                                 checked={requireEmailToView}
@@ -120,7 +120,7 @@ export function CreateLinkSlideOver({ docId }: { docId: string }) {
                             </div>
                             <div className="ml-3 text-sm">
                               <label
-                                htmlFor="comments"
+                                htmlFor="require-email"
                                 className="font-medium text-gray-700"
                               >
                                 Require email to view
@@ -134,8 +134,8 @@ export function CreateLinkSlideOver({ docId }: { docId: string }) {
                           <div className="flex items-start">
                             <div className="h-5 flex items-center">
                               <input
-                                id="comments"
-                                name="comments"
+                                id="allow-downloading"
+                                name="allow-downloading"
                                 type="checkbox"
                                 className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                                 checked={downloadAllowed}
@@ -146,7 +146,7 @@ export function CreateLinkSlideOver({ docId }: { docId: string }) {
                             </div>
                             <div className="ml-3 text-sm">
                               <label
-                                htmlFor="comments"
+                                htmlFor="allow-downloading"
                                 className="font-medium text-gray-700"
                               >
                                 Allow downloading
@@ -159,8 +159,8 @@ export function CreateLinkSlideOver({ docId }: { docId: string }) {
                           <div className="flex items-start">
                             <div className="h-5 flex items-center">
                               <input
-                                id="comments"
-                                name="comments"
+                                id="passcode"
+                                name="passcode"
                                 type="checkbox"
                                 className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                                 checked={passcodeProtected}
@@ -171,7 +171,7 @@ export function CreateLinkSlideOver({ docId }: { docId: string }) {
                             </div>
                             <div className="ml-3 text-sm">
                               <label
-                                htmlFor="comments"
+                                htmlFor="passcode"
                                 className="font-medium text-gray-700"
                               >
                                 Passcode
