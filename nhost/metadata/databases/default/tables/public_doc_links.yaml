@@ -1,0 +1,24 @@
+table:
+  name: doc_links
+  schema: public
+configuration:
+  custom_column_names:
+    created_at: createdAt
+    doc_id: docId
+    download_allowed: downloadAllowed
+    is_active: isActive
+    require_email_to_view: requireEmailToView
+    updated_at: updatedAt
+  custom_root_fields: {}
+object_relationships:
+- name: doc
+  using:
+    foreign_key_constraint_on: doc_id
+array_relationships:
+- name: docVisits
+  using:
+    foreign_key_constraint_on:
+      column: doc_link_id
+      table:
+        name: doc_visits
+        schema: public

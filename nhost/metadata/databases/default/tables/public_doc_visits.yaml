@@ -1,0 +1,13 @@
+table:
+  name: doc_visits
+  schema: public
+configuration:
+  custom_column_names:
+    created_at: createdAt
+    doc_link_id: docLinkId
+    updated_at: updatedAt
+  custom_root_fields: {}
+object_relationships:
+- name: docLink
+  using:
+    foreign_key_constraint_on: doc_link_id

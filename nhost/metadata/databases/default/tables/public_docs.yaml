@@ -1,0 +1,25 @@
+table:
+  name: docs
+  schema: public
+configuration:
+  custom_column_names:
+    created_at: createdAt
+    file_id: fileId
+    updated_at: updatedAt
+    user_id: userId
+  custom_root_fields: {}
+object_relationships:
+- name: file
+  using:
+    foreign_key_constraint_on: file_id
+- name: user
+  using:
+    foreign_key_constraint_on: user_id
+array_relationships:
+- name: docLinks
+  using:
+    foreign_key_constraint_on:
+      column: doc_id
+      table:
+        name: doc_links
+        schema: public
