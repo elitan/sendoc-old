@@ -1,8 +1,8 @@
-import { useNhostAuth } from "@nhost/react-auth";
+import { useAuthenticationStatus } from "@nhost/react";
 import { Navigate, useLocation } from "react-router";
 
 export function RequireAuth({ children }: { children: JSX.Element }) {
-  const { isAuthenticated, isLoading } = useNhostAuth();
+  const { isAuthenticated, isLoading } = useAuthenticationStatus();
   const location = useLocation();
 
   if (isLoading) {
@@ -10,7 +10,7 @@ export function RequireAuth({ children }: { children: JSX.Element }) {
   }
 
   if (!isAuthenticated) {
-    return <Navigate to="/sign-in" state={{ from: location }} />;
+    return <Navigate to='/sign-in' state={{ from: location }} />;
   }
 
   return children;

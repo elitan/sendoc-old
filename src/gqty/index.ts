@@ -16,22 +16,14 @@ import { generatedSchema, scalarsEnumsHash } from "./schema.generated";
 
 const queryFetcher: QueryFetcher = async function (query, variables) {
   const authHeaders = () => {
-    console.log("is authenticated?");
-
-    console.log(nhost.auth.isAuthenticated());
-
     if (!nhost.auth.isAuthenticated()) {
-      console.log("return here");
-
       return;
     }
-
     return {
       Authorization: `Bearer ${nhost.auth.getAccessToken()}`,
     };
   };
 
-  // Modify "/api/graphql" if needed
   const response = await fetch(
     `${process.env.REACT_APP_NHOST_BACKEND_URL}/v1/graphql`,
     {
@@ -48,9 +40,7 @@ const queryFetcher: QueryFetcher = async function (query, variables) {
     }
   );
 
-  const json = await response.json();
-
-  return json;
+  return await response.json();
 };
 
 export const client = createClient<
@@ -82,11 +72,7 @@ const {
   prepareQuery,
 } = createReactClient<GeneratedSchema>(client, {
   defaults: {
-    // Set this flag as "true" if your usage involves React Suspense
-    // Keep in mind that you can overwrite it in a per-hook basis
-    suspense: false,
-
-    // Set this flag based on your needs
+    suspense: true,
     staleWhileRevalidate: false,
   },
 });
