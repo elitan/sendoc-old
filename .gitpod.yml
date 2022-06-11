@@ -1,0 +1,14 @@
+tasks:
+  - name: Nhost
+    before: sudo curl -L https://raw.githubusercontent.com/nhost/cli/main/get.sh | bash
+    command: nhost up -d 
+  - name: React
+    init: yarn install
+    command: yarn run start
+
+ports:
+  - port: 3000
+    onOpen: "open-preview"
+
+
+
