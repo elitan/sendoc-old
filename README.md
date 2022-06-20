@@ -19,4 +19,4 @@
   - On free: only allow 5 documents
   - Pay to allow 500 documents
 
-redeploy 1
+redeploy 2
