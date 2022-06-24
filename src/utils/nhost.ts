@@ -1,7 +1,12 @@
-import { NhostClient } from "@nhost/react";
+import { NhostClient } from '@nhost/react'
 
-const nhost = new NhostClient({
-  backendUrl: process.env.REACT_APP_NHOST_BACKEND_URL as string,
-});
+const params = {
+  subdomain: process.env.REACT_APP_NHOST_SUBDOMAIN as string,
+  region: process.env.REACT_APP_NHOST_REGION as string
+}
 
-export { nhost };
+console.log(params)
+
+const nhost = new NhostClient(params)
+
+export { nhost }
