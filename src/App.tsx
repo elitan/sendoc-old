@@ -16,9 +16,9 @@ import { PublicDocument } from './components/PublicDocumnet'
 import { NhostReactProvider } from '@nhost/react'
 
 import { QueryClient, QueryClientProvider } from 'react-query'
-const queryClient = new QueryClient({
-  defaultOptions: {}
-})
+import { ReactQueryDevtools } from 'react-query/devtools'
+
+const queryClient = new QueryClient()
 
 function App() {
   return (
@@ -28,6 +28,7 @@ function App() {
           <AppRouter />
           <ToastContainer />
         </NhostReactProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
       </QueryClientProvider>
     </BrowserRouter>
   )
@@ -38,9 +39,9 @@ function AppRouter() {
     <Routes>
       <Route path="/sign-up" element={<SignUp />} />
       <Route path="/sign-in" element={<SignIn />} />
-      {/* <Route path="/d" element={<Outlet />}>
+      <Route path="/d" element={<Outlet />}>
         <Route path=":id" element={<PublicDocument />} />
-      </Route> */}
+      </Route>
       <Route
         path="/"
         element={
