@@ -1,38 +1,50 @@
-import { useParams } from "react-router-dom";
-import { Document, Page, pdfjs } from "react-pdf";
+import { useParams } from 'react-router-dom'
+import { Document, Page, pdfjs } from 'react-pdf'
 
 // import { Document, Page } from "react-pdf";
-import { useState } from "react";
-import { nhost } from "../utils/nhost";
-import { query } from "../gqty";
+import { useState } from 'react'
+import { nhost } from '../utils/nhost'
+import { useGetDocLinkQuery } from '../utils/__generated__/graphql'
 
 export function PublicDocument() {
-  const { id } = useParams();
+  const { id } = useParams()
 
-  const [email, setEmail] = useState("");
-  const [passcode, setPasscode] = useState("");
+  const [email, setEmail] = useState('')
+  const [passcode, setPasscode] = useState('')
 
-  const [allowedToView, setAllowedToView] = useState(false);
+  const [allowedToView, setAllowedToView] = useState(false)
 
-  pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
-  const [numPages, setNumPages] = useState<number | null>(null);
-  const [pageNumber, setPageNumber] = useState(1);
+  pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
+  const [numPages, setNumPages] = useState<number | null>(null)
+  const [pageNumber, setPageNumber] = useState(1)
 
   /*To Prevent right click on screen*/
-  document.addEventListener("contextmenu", (event) => {
-    event.preventDefault();
-  });
+  document.addEventListener('contextmenu', (event) => {
+    event.preventDefault()
+  })
 
   function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
-    setNumPages(numPages);
+    setNumPages(numPages)
   }
 
-  console.log("file:");
+  console.log('file:')
 
-  const docLink = query.docLink({ id });
+  const { data, isLoading } = useGetDocLinkQuery({
+    id
+  })
+
+  if (!data || isLoading) {
+    return <div>Loading...</div>
+  }
+
+  const { docLink } = data
 
   if (!docLink) {
-    return <div>No doc link found</div>;
+    return <div>No doclink found</div>
+  }
+
+  if (!docLink) {
+    return <div>No doc link found</div>
   }
 
   if ((docLink.requireEmailToView || docLink.passcode) && !allowedToView) {
@@ -43,21 +55,21 @@ export function PublicDocument() {
           onSubmit={() => {
             // TODO: Insert viewer with email
 
-            setAllowedToView(true);
+            setAllowedToView(true)
           }}
         >
           <input type="email" />
           <button type="submit">View document</button>
         </form>
       </div>
-    );
+    )
   }
 
-  console.log({ docLink });
+  console.log({ docLink })
 
-  const url = nhost.storage.getUrl({
-    fileId: docLink.doc.fileId,
-  });
+  const url = nhost.storage.getPublicUrl({
+    fileId: docLink.doc.fileId
+  })
 
   return (
     <div className="border">
@@ -71,14 +83,14 @@ export function PublicDocument() {
         <div>
           <button
             onClick={() => {
-              setPageNumber(pageNumber - 1);
+              setPageNumber(pageNumber - 1)
             }}
           >
             prev
           </button>
           <button
             onClick={() => {
-              setPageNumber(pageNumber + 1);
+              setPageNumber(pageNumber + 1)
             }}
           >
             next
@@ -86,5 +98,5 @@ export function PublicDocument() {
         </div>
       </div>
     </div>
-  );
+  )
 }

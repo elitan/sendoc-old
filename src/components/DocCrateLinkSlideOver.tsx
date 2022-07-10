@@ -1,57 +1,34 @@
-import { Fragment, useState } from "react";
-import { Dialog, Transition } from "@headlessui/react";
-import { XIcon } from "@heroicons/react/outline";
-import { doc_links_insert_input, query, useMutation } from "../gqty";
+import { Fragment, useState } from 'react'
+import { Dialog, Transition } from '@headlessui/react'
+import { XIcon } from '@heroicons/react/outline'
+import { useInsertDocLinkMutation } from '../utils/__generated__/graphql'
 
 export function CreateLinkSlideOver({ docId }: { docId: string }) {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(false)
 
-  const [requireEmailToView, setRequireEmailToView] = useState(false);
-  const [downloadAllowed, setDownloadAllowed] = useState(false);
+  const [requireEmailToView, setRequireEmailToView] = useState(false)
+  const [downloadAllowed, setDownloadAllowed] = useState(false)
 
-  const [passcodeProtected, setPasscodeProtected] = useState(false);
-  const [passcode, setPasscode] = useState("");
+  const [passcodeProtected, setPasscodeProtected] = useState(false)
+  const [passcode, setPasscode] = useState('')
 
-  const [insertDocLink, { isLoading, data, error }] = useMutation(
-    (mutation, args: doc_links_insert_input) => {
-      const docLink = mutation.insertDocLink({
-        object: args,
-      });
-
-      if (!docLink) {
-        return {
-          id: null,
-        };
-      }
-
-      return {
-        id: docLink.id,
-      };
-    },
-    {
-      onCompleted(data) {},
-      onError(error) {},
-      refetchQueries: [query.doc({ id: docId })],
-      awaitRefetchQueries: true,
-      suspense: false,
-    }
-  );
+  const mutation = useInsertDocLinkMutation()
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault()
 
-    await insertDocLink({
-      args: {
+    await mutation.mutate({
+      docLink: {
         docId,
         requireEmailToView,
         downloadAllowed,
-        passcode: passcodeProtected ? passcode : null,
-      },
-    });
+        passcode: passcodeProtected ? passcode : null
+      }
+    })
 
-    alert("create link!");
-    setOpen(false);
-  };
+    alert('create link!')
+    setOpen(false)
+  }
 
   return (
     <div>
@@ -62,11 +39,7 @@ export function CreateLinkSlideOver({ docId }: { docId: string }) {
         Create Link
       </button>
       <Transition.Root show={open} as={Fragment}>
-        <Dialog
-          as="div"
-          className="fixed inset-0 overflow-hidden"
-          onClose={setOpen}
-        >
+        <Dialog as="div" className="fixed inset-0 overflow-hidden" onClose={setOpen}>
           <div className="absolute inset-0 overflow-hidden">
             <Dialog.Overlay className="absolute inset-0" />
 
@@ -114,20 +87,16 @@ export function CreateLinkSlideOver({ docId }: { docId: string }) {
                                 className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                                 checked={requireEmailToView}
                                 onChange={() => {
-                                  setRequireEmailToView(!requireEmailToView);
+                                  setRequireEmailToView(!requireEmailToView)
                                 }}
                               />
                             </div>
                             <div className="ml-3 text-sm">
-                              <label
-                                htmlFor="require-email"
-                                className="font-medium text-gray-700"
-                              >
+                              <label htmlFor="require-email" className="font-medium text-gray-700">
                                 Require email to view
                               </label>
                               <p className="text-gray-500">
-                                Viewers must enter an email to view your
-                                document.
+                                Viewers must enter an email to view your document.
                               </p>
                             </div>
                           </div>
@@ -140,7 +109,7 @@ export function CreateLinkSlideOver({ docId }: { docId: string }) {
                                 className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                                 checked={downloadAllowed}
                                 onChange={() => {
-                                  setDownloadAllowed(!downloadAllowed);
+                                  setDownloadAllowed(!downloadAllowed)
                                 }}
                               />
                             </div>
@@ -151,9 +120,7 @@ export function CreateLinkSlideOver({ docId }: { docId: string }) {
                               >
                                 Allow downloading
                               </label>
-                              <p className="text-gray-500">
-                                Viewers can download your file.
-                              </p>
+                              <p className="text-gray-500">Viewers can download your file.</p>
                             </div>
                           </div>
                           <div className="flex items-start">
@@ -165,20 +132,16 @@ export function CreateLinkSlideOver({ docId }: { docId: string }) {
                                 className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                                 checked={passcodeProtected}
                                 onChange={() => {
-                                  setPasscodeProtected(!passcodeProtected);
+                                  setPasscodeProtected(!passcodeProtected)
                                 }}
                               />
                             </div>
                             <div className="ml-3 text-sm">
-                              <label
-                                htmlFor="passcode"
-                                className="font-medium text-gray-700"
-                              >
+                              <label htmlFor="passcode" className="font-medium text-gray-700">
                                 Passcode
                               </label>
                               <p className="text-gray-500">
-                                Viewers must enter the passcode to view the
-                                document.
+                                Viewers must enter the passcode to view the document.
                               </p>
                             </div>
                           </div>
@@ -194,7 +157,7 @@ export function CreateLinkSlideOver({ docId }: { docId: string }) {
                                   placeholder="Passcode"
                                   value={passcode}
                                   onChange={(e) => {
-                                    setPasscode(e.target.value);
+                                    setPasscode(e.target.value)
                                   }}
                                   autoFocus={true}
                                 />
@@ -215,7 +178,7 @@ export function CreateLinkSlideOver({ docId }: { docId: string }) {
                       <button
                         type="submit"
                         className="ml-4 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        disabled={isLoading}
+                        disabled={mutation.isLoading}
                       >
                         Create Link
                       </button>
@@ -228,5 +191,5 @@ export function CreateLinkSlideOver({ docId }: { docId: string }) {
         </Dialog>
       </Transition.Root>
     </div>
-  );
+  )
 }

@@ -1,0 +1,17 @@
+query getDocLink($id: uuid!) {
+  docLink(id: $id) {
+    id
+    requireEmailToView
+    passcode
+    doc {
+      id
+      fileId
+    }
+  }
+}
+
+mutation insertDocLink($docLink: doc_links_insert_input!) {
+  insertDocLink(object: $docLink) {
+    id
+  }
+}

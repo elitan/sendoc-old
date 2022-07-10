@@ -38,13 +38,8 @@ insert_permissions:
 - permission:
     backend_only: false
     check:
-      _and:
-      - bucket_id:
-          _eq: documents
-      - mime_type:
-          _eq: application/pdf
-      - size:
-          _lt: 10000000
+      bucket_id:
+        _eq: documents
     columns:
     - bucket_id
     - id

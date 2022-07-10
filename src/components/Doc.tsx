@@ -1,20 +1,24 @@
-import copy from "copy-to-clipboard";
-import { useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import { query } from "../gqty";
-import { CreateLinkSlideOver } from "./DocCrateLinkSlideOver";
+import copy from 'copy-to-clipboard'
+import { useParams } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { useGetDocQuery } from '../utils/__generated__/graphql'
+import { CreateLinkSlideOver } from './DocCrateLinkSlideOver'
 
 export function Doc() {
-  const { id } = useParams();
+  const { id } = useParams()
 
-  const doc = query.doc({ id });
+  const { data, isLoading } = useGetDocQuery({
+    id
+  })
 
-  if (!id) {
-    return <div>No id found</div>;
+  if (!data || isLoading) {
+    return <div>Loading...</div>
   }
 
+  const { doc } = data
+
   if (!doc) {
-    return <div>No document found</div>;
+    return <div>No document found</div>
   }
 
   return (
@@ -27,7 +31,7 @@ export function Doc() {
             </h2>
           </div>
           <div className="mt-4 flex md:mt-0 md:ml-4">
-            <CreateLinkSlideOver docId={id} />
+            <CreateLinkSlideOver docId={doc.id} />
           </div>
         </div>
       </div>
@@ -61,8 +65,8 @@ export function Doc() {
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
-                    {doc.docLinks().map((docLink) => {
-                      const docLinkFormatted = `${process.env.REACT_APP_DOMAIN}/d/${docLink.id}`;
+                    {doc.docLinks.map((docLink) => {
+                      const docLinkFormatted = `${process.env.REACT_APP_DOMAIN}/d/${docLink.id}`
 
                       return (
                         <tr key={docLink.id ?? 0}>
@@ -70,8 +74,8 @@ export function Doc() {
                             <span
                               className="border border-gray-200 p-2 rounded-md cursor-pointer select-none"
                               onClick={() => {
-                                copy(docLinkFormatted);
-                                toast.success("Link copied to clipboar");
+                                copy(docLinkFormatted)
+                                toast.success('Link copied to clipboar')
                               }}
                             >
                               {docLinkFormatted}
@@ -81,7 +85,7 @@ export function Doc() {
                             {docLink.createdAt}
                           </td>
                         </tr>
-                      );
+                      )
                     })}
                   </tbody>
                 </table>
@@ -91,5 +95,5 @@ export function Doc() {
         </div>
       </div>
     </div>
-  );
+  )
 }

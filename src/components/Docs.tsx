@@ -1,6 +1,5 @@
-import { Link } from "react-router-dom";
-import { query } from "../gqty";
-import { DocsList } from "./DocsList";
+import { Link } from 'react-router-dom'
+import { DocsList } from './DocsList'
 
 export function Docs() {
   return (
@@ -28,5 +27,5 @@ export function Docs() {
         <DocsList />
       </div>
     </div>
-  );
+  )
 }
