@@ -16,6 +16,8 @@ query getDocs {
       id
       avatarUrl
       displayName
+      isAnonymous
+      avatarUrl
     }
   }
 }

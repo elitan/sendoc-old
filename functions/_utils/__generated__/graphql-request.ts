@@ -1,5 +1,6 @@
-import { useQuery, useMutation, UseQueryOptions, UseMutationOptions } from 'react-query';
-import { fetchData } from '../gql-fetcher';
+import { GraphQLClient } from 'graphql-request';
+import * as Dom from 'graphql-request/dist/types.dom';
+import gql from 'graphql-tag';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -4450,155 +4451,34 @@ export type Uuid_Comparison_Exp = {
   _nin?: InputMaybe<Array<Scalars['uuid']>>;
 };
 
-export type GetDocLinkQueryVariables = Exact<{
+export type GetUserQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetDocLinkQuery = { __typename?: 'query_root', docLink?: { __typename?: 'doc_links', id: any, requireEmailToView: boolean, passcode?: string | null, doc: { __typename?: 'docs', id: any, fileId: any } } | null };
-
-export type InsertDocLinkMutationVariables = Exact<{
-  docLink: Doc_Links_Insert_Input;
-}>;
+export type GetUserQuery = { __typename?: 'query_root', user?: { __typename?: 'users', id: any, displayName: string, email?: any | null } | null };
 
 
-export type InsertDocLinkMutation = { __typename?: 'mutation_root', insertDocLink?: { __typename?: 'doc_links', id: any } | null };
-
-export type GetDocsQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type GetDocsQuery = { __typename?: 'query_root', docs: Array<{ __typename?: 'docs', id: any, createdAt: any, name: string, docLinks: Array<{ __typename?: 'doc_links', id: any, createdAt: any, docVisits_aggregate: { __typename?: 'doc_visits_aggregate', aggregate?: { __typename?: 'doc_visits_aggregate_fields', count: number } | null } }>, user: { __typename?: 'users', id: any, avatarUrl: string, displayName: string, isAnonymous: boolean } }> };
-
-export type GetDocQueryVariables = Exact<{
-  id: Scalars['uuid'];
-}>;
-
-
-export type GetDocQuery = { __typename?: 'query_root', doc?: { __typename?: 'docs', id: any, name: string, docLinks: Array<{ __typename?: 'doc_links', id: any, createdAt: any }> } | null };
-
-export type InsertDocMutationVariables = Exact<{
-  doc: Docs_Insert_Input;
-}>;
-
-
-export type InsertDocMutation = { __typename?: 'mutation_root', insertDoc?: { __typename?: 'docs', id: any } | null };
-
-
-export const GetDocLinkDocument = `
-    query getDocLink($id: uuid!) {
-  docLink(id: $id) {
+export const GetUserDocument = gql`
+    query getUser($id: uuid!) {
+  user(id: $id) {
     id
-    requireEmailToView
-    passcode
-    doc {
-      id
-      fileId
+    displayName
+    email
+  }
+}
+    `;
+
+export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string) => Promise<T>;
+
+
+const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationType) => action();
+
+export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
+  return {
+    getUser(variables: GetUserQueryVariables, requestHeaders?: Dom.RequestInit["headers"]): Promise<GetUserQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<GetUserQuery>(GetUserDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getUser', 'query');
     }
-  }
+  };
 }
-    `;
-export const useGetDocLinkQuery = <
-      TData = GetDocLinkQuery,
-      TError = unknown
-    >(
-      variables: GetDocLinkQueryVariables,
-      options?: UseQueryOptions<GetDocLinkQuery, TError, TData>
-    ) =>
-    useQuery<GetDocLinkQuery, TError, TData>(
-      ['getDocLink', variables],
-      fetchData<GetDocLinkQuery, GetDocLinkQueryVariables>(GetDocLinkDocument, variables),
-      options
-    );
-export const InsertDocLinkDocument = `
-    mutation insertDocLink($docLink: doc_links_insert_input!) {
-  insertDocLink(object: $docLink) {
-    id
-  }
-}
-    `;
-export const useInsertDocLinkMutation = <
-      TError = unknown,
-      TContext = unknown
-    >(options?: UseMutationOptions<InsertDocLinkMutation, TError, InsertDocLinkMutationVariables, TContext>) =>
-    useMutation<InsertDocLinkMutation, TError, InsertDocLinkMutationVariables, TContext>(
-      ['insertDocLink'],
-      (variables?: InsertDocLinkMutationVariables) => fetchData<InsertDocLinkMutation, InsertDocLinkMutationVariables>(InsertDocLinkDocument, variables)(),
-      options
-    );
-export const GetDocsDocument = `
-    query getDocs {
-  docs {
-    id
-    createdAt
-    name
-    docLinks {
-      id
-      createdAt
-      docVisits_aggregate {
-        aggregate {
-          count
-        }
-      }
-    }
-    user {
-      id
-      avatarUrl
-      displayName
-      isAnonymous
-      avatarUrl
-    }
-  }
-}
-    `;
-export const useGetDocsQuery = <
-      TData = GetDocsQuery,
-      TError = unknown
-    >(
-      variables?: GetDocsQueryVariables,
-      options?: UseQueryOptions<GetDocsQuery, TError, TData>
-    ) =>
-    useQuery<GetDocsQuery, TError, TData>(
-      variables === undefined ? ['getDocs'] : ['getDocs', variables],
-      fetchData<GetDocsQuery, GetDocsQueryVariables>(GetDocsDocument, variables),
-      options
-    );
-export const GetDocDocument = `
-    query getDoc($id: uuid!) {
-  doc(id: $id) {
-    id
-    name
-    docLinks {
-      id
-      createdAt
-    }
-  }
-}
-    `;
-export const useGetDocQuery = <
-      TData = GetDocQuery,
-      TError = unknown
-    >(
-      variables: GetDocQueryVariables,
-      options?: UseQueryOptions<GetDocQuery, TError, TData>
-    ) =>
-    useQuery<GetDocQuery, TError, TData>(
-      ['getDoc', variables],
-      fetchData<GetDocQuery, GetDocQueryVariables>(GetDocDocument, variables),
-      options
-    );
-export const InsertDocDocument = `
-    mutation insertDoc($doc: docs_insert_input!) {
-  insertDoc(object: $doc) {
-    id
-  }
-}
-    `;
-export const useInsertDocMutation = <
-      TError = unknown,
-      TContext = unknown
-    >(options?: UseMutationOptions<InsertDocMutation, TError, InsertDocMutationVariables, TContext>) =>
-    useMutation<InsertDocMutation, TError, InsertDocMutationVariables, TContext>(
-      ['insertDoc'],
-      (variables?: InsertDocMutationVariables) => fetchData<InsertDocMutation, InsertDocMutationVariables>(InsertDocDocument, variables)(),
-      options
-    );
+export type Sdk = ReturnType<typeof getSdk>;
