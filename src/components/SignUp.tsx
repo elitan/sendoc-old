@@ -1,42 +1,26 @@
-/*
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
-import { LockClosedIcon } from "@heroicons/react/solid";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { nhost } from "../utils/nhost";
+import { LockClosedIcon } from '@heroicons/react/solid'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import { nhost } from '../utils/nhost'
 
 export function SignUp() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault()
 
     const { error } = await nhost.auth.signUp({
       email,
-      password,
-    });
+      password
+    })
 
     if (error) {
-      return alert(error.message);
+      return alert(error.message)
     }
 
-    alert("sign up success");
-  };
+    alert('sign up success')
+  }
 
   return (
     <>
@@ -48,9 +32,7 @@ export function SignUp() {
               src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
               alt="Workflow"
             />
-            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-              Sign Up to your account
-            </h2>
+            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign Up</h2>
           </div>
           <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
             <input type="hidden" name="remember" defaultValue="true" />
@@ -90,10 +72,7 @@ export function SignUp() {
             </div>
 
             <div className="text-sm">
-              <a
-                href="#"
-                className="font-medium text-indigo-600 hover:text-indigo-500"
-              >
+              <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
                 Forgot your password?
               </a>
             </div>
@@ -113,7 +92,7 @@ export function SignUp() {
               </button>
             </div>
             <div className="text-gray-600">
-              Already have an account?{" "}
+              Already have an account?{' '}
               <Link to="/sign-in" className="text-indigo-500">
                 Sign in
               </Link>
@@ -122,5 +101,5 @@ export function SignUp() {
         </div>
       </div>
     </>
-  );
+  )
 }
