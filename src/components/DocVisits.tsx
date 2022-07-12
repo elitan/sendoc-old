@@ -1,4 +1,4 @@
-import { formatDistanceToNow, parseISO } from 'date-fns'
+import { formatDistanceToNowStrict, parseISO } from 'date-fns'
 import { useGetDocVisitsByDocIdQuery } from '../utils/__generated__/graphql'
 
 type DocVisitsParams = {
@@ -56,7 +56,7 @@ export function DocVisits({ docId }: DocVisitsParams) {
                 {docVisit.city}, {docVisit.country}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                {formatDistanceToNow(parseISO(docVisit.createdAt), {
+                {formatDistanceToNowStrict(parseISO(docVisit.createdAt), {
                   addSuffix: true
                 })}
               </td>

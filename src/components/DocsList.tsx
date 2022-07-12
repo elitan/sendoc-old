@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { formatDistanceToNowStrict, parseISO } from 'date-fns'
 import { useGetDocsQuery } from '../utils/__generated__/graphql'
 
 export function DocsList() {
@@ -28,7 +29,7 @@ export function DocsList() {
                     scope="col"
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                   >
-                    Uploaded At
+                    Uploaded
                   </th>
                   <th
                     scope="col"
@@ -60,7 +61,9 @@ export function DocsList() {
                         <Link to={`/docs/${doc.id}`}>{doc.name}</Link>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        {doc.createdAt}
+                        {formatDistanceToNowStrict(parseISO(doc.createdAt), {
+                          addSuffix: true
+                        })}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {docVisits}

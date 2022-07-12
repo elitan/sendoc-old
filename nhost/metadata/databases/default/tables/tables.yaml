@@ -8,5 +8,6 @@
 - "!include public_doc_links.yaml"
 - "!include public_doc_visits.yaml"
 - "!include public_docs.yaml"
+- "!include public_profiles.yaml"
 - "!include storage_buckets.yaml"
 - "!include storage_files.yaml"

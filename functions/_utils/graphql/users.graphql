@@ -3,5 +3,9 @@ query getUser($id: uuid!) {
     id
     displayName
     email
+    profile {
+      id
+      stripeCustomerId
+    }
   }
 }

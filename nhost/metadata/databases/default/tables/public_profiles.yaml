@@ -1,0 +1,34 @@
+table:
+  name: profiles
+  schema: public
+configuration:
+  custom_column_names:
+    stripe_customer_id: stripeCustomerId
+  custom_name: profiles
+  custom_root_fields:
+    delete: deleteProfiles
+    delete_by_pk: deleteProfile
+    insert: insertProfiles
+    insert_one: insertProfile
+    select_aggregate: profilesAggregate
+    select_by_pk: profile
+    update: updateProfiles
+    update_by_pk: updateProfile
+object_relationships:
+- name: user
+  using:
+    foreign_key_constraint_on: id
+event_triggers:
+- definition:
+    delete:
+      columns: "*"
+    enable_manual: false
+  headers:
+  - name: nhost-webhook-secret
+    value_from_env: NHOST_WEBHOOK_SECRET
+  name: profiles-delete-stripe
+  retry_conf:
+    interval_sec: 10
+    num_retries: 0
+    timeout_sec: 15
+  webhook: "{{NHOST_BACKEND_URL}}/v1/functions/events/profiles/delete/stripe"

@@ -1,7 +1,7 @@
 import copy from 'copy-to-clipboard'
 import { useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { formatDistanceToNow, parseISO } from 'date-fns'
+import { formatDistanceToNowStrict, parseISO } from 'date-fns'
 import { useGetDocQuery } from '../utils/__generated__/graphql'
 import { CreateLinkSlideOver } from './DocCrateLinkSlideOver'
 import { DocVisits } from './DocVisits'
@@ -120,7 +120,7 @@ export function Doc() {
                             {docLink.passcode ? 'Yes' : 'No'}
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {formatDistanceToNow(parseISO(docLink.createdAt), {
+                            {formatDistanceToNowStrict(parseISO(docLink.createdAt), {
                               addSuffix: true
                             })}
                           </td>

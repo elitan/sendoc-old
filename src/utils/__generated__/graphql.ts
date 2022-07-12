@@ -2573,6 +2573,10 @@ export type Mutation_Root = {
   deleteFile?: Maybe<Files>;
   /** delete data from the table: "storage.files" */
   deleteFiles?: Maybe<Files_Mutation_Response>;
+  /** delete single row from the table: "profiles" */
+  deleteProfile?: Maybe<Profiles>;
+  /** delete data from the table: "profiles" */
+  deleteProfiles?: Maybe<Profiles_Mutation_Response>;
   /** delete single row from the table: "auth.users" */
   deleteUser?: Maybe<Users>;
   /** delete data from the table: "auth.users" */
@@ -2625,6 +2629,10 @@ export type Mutation_Root = {
   insertFile?: Maybe<Files>;
   /** insert data into the table: "storage.files" */
   insertFiles?: Maybe<Files_Mutation_Response>;
+  /** insert a single row into the table: "profiles" */
+  insertProfile?: Maybe<Profiles>;
+  /** insert data into the table: "profiles" */
+  insertProfiles?: Maybe<Profiles_Mutation_Response>;
   /** insert a single row into the table: "auth.users" */
   insertUser?: Maybe<Users>;
   /** insert data into the table: "auth.users" */
@@ -2669,6 +2677,10 @@ export type Mutation_Root = {
   updateFile?: Maybe<Files>;
   /** update data of the table: "storage.files" */
   updateFiles?: Maybe<Files_Mutation_Response>;
+  /** update single row of the table: "profiles" */
+  updateProfile?: Maybe<Profiles>;
+  /** update data of the table: "profiles" */
+  updateProfiles?: Maybe<Profiles_Mutation_Response>;
   /** update single row of the table: "auth.users" */
   updateUser?: Maybe<Users>;
   /** update data of the table: "auth.users" */
@@ -2797,6 +2809,18 @@ export type Mutation_RootDeleteFileArgs = {
 /** mutation root */
 export type Mutation_RootDeleteFilesArgs = {
   where: Files_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDeleteProfileArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDeleteProfilesArgs = {
+  where: Profiles_Bool_Exp;
 };
 
 
@@ -2979,6 +3003,20 @@ export type Mutation_RootInsertFilesArgs = {
 
 
 /** mutation root */
+export type Mutation_RootInsertProfileArgs = {
+  object: Profiles_Insert_Input;
+  on_conflict?: InputMaybe<Profiles_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsertProfilesArgs = {
+  objects: Array<Profiles_Insert_Input>;
+  on_conflict?: InputMaybe<Profiles_On_Conflict>;
+};
+
+
+/** mutation root */
 export type Mutation_RootInsertUserArgs = {
   object: Users_Insert_Input;
   on_conflict?: InputMaybe<Users_On_Conflict>;
@@ -3147,6 +3185,20 @@ export type Mutation_RootUpdateFilesArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdateProfileArgs = {
+  _set?: InputMaybe<Profiles_Set_Input>;
+  pk_columns: Profiles_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdateProfilesArgs = {
+  _set?: InputMaybe<Profiles_Set_Input>;
+  where: Profiles_Bool_Exp;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdateUserArgs = {
   _append?: InputMaybe<Users_Append_Input>;
   _delete_at_path?: InputMaybe<Users_Delete_At_Path_Input>;
@@ -3197,6 +3249,133 @@ export enum Order_By {
   DescNullsFirst = 'desc_nulls_first',
   /** in descending order, nulls last */
   DescNullsLast = 'desc_nulls_last'
+}
+
+/** columns and relationships of "profiles" */
+export type Profiles = {
+  __typename?: 'profiles';
+  id: Scalars['uuid'];
+  stripeCustomerId: Scalars['String'];
+  /** An object relationship */
+  user: Users;
+};
+
+/** aggregated selection of "profiles" */
+export type Profiles_Aggregate = {
+  __typename?: 'profiles_aggregate';
+  aggregate?: Maybe<Profiles_Aggregate_Fields>;
+  nodes: Array<Profiles>;
+};
+
+/** aggregate fields of "profiles" */
+export type Profiles_Aggregate_Fields = {
+  __typename?: 'profiles_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<Profiles_Max_Fields>;
+  min?: Maybe<Profiles_Min_Fields>;
+};
+
+
+/** aggregate fields of "profiles" */
+export type Profiles_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Profiles_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** Boolean expression to filter rows from the table "profiles". All fields are combined with a logical 'AND'. */
+export type Profiles_Bool_Exp = {
+  _and?: InputMaybe<Array<Profiles_Bool_Exp>>;
+  _not?: InputMaybe<Profiles_Bool_Exp>;
+  _or?: InputMaybe<Array<Profiles_Bool_Exp>>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  stripeCustomerId?: InputMaybe<String_Comparison_Exp>;
+  user?: InputMaybe<Users_Bool_Exp>;
+};
+
+/** unique or primary key constraints on table "profiles" */
+export enum Profiles_Constraint {
+  /** unique or primary key constraint */
+  ProfilesPkey = 'profiles_pkey',
+  /** unique or primary key constraint */
+  ProfilesStripeCustomerIdKey = 'profiles_stripe_customer_id_key'
+}
+
+/** input type for inserting data into table "profiles" */
+export type Profiles_Insert_Input = {
+  id?: InputMaybe<Scalars['uuid']>;
+  stripeCustomerId?: InputMaybe<Scalars['String']>;
+  user?: InputMaybe<Users_Obj_Rel_Insert_Input>;
+};
+
+/** aggregate max on columns */
+export type Profiles_Max_Fields = {
+  __typename?: 'profiles_max_fields';
+  id?: Maybe<Scalars['uuid']>;
+  stripeCustomerId?: Maybe<Scalars['String']>;
+};
+
+/** aggregate min on columns */
+export type Profiles_Min_Fields = {
+  __typename?: 'profiles_min_fields';
+  id?: Maybe<Scalars['uuid']>;
+  stripeCustomerId?: Maybe<Scalars['String']>;
+};
+
+/** response of any mutation on the table "profiles" */
+export type Profiles_Mutation_Response = {
+  __typename?: 'profiles_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Profiles>;
+};
+
+/** input type for inserting object relation for remote table "profiles" */
+export type Profiles_Obj_Rel_Insert_Input = {
+  data: Profiles_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Profiles_On_Conflict>;
+};
+
+/** on_conflict condition type for table "profiles" */
+export type Profiles_On_Conflict = {
+  constraint: Profiles_Constraint;
+  update_columns?: Array<Profiles_Update_Column>;
+  where?: InputMaybe<Profiles_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "profiles". */
+export type Profiles_Order_By = {
+  id?: InputMaybe<Order_By>;
+  stripeCustomerId?: InputMaybe<Order_By>;
+  user?: InputMaybe<Users_Order_By>;
+};
+
+/** primary key columns input for table: profiles */
+export type Profiles_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "profiles" */
+export enum Profiles_Select_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  StripeCustomerId = 'stripeCustomerId'
+}
+
+/** input type for updating data in table "profiles" */
+export type Profiles_Set_Input = {
+  id?: InputMaybe<Scalars['uuid']>;
+  stripeCustomerId?: InputMaybe<Scalars['String']>;
+};
+
+/** update columns of table "profiles" */
+export enum Profiles_Update_Column {
+  /** column name */
+  Id = 'id',
+  /** column name */
+  StripeCustomerId = 'stripeCustomerId'
 }
 
 export type Query_Root = {
@@ -3267,6 +3446,12 @@ export type Query_Root = {
   files: Array<Files>;
   /** fetch aggregated fields from the table: "storage.files" */
   filesAggregate: Files_Aggregate;
+  /** fetch data from the table: "profiles" using primary key columns */
+  profile?: Maybe<Profiles>;
+  /** fetch data from the table: "profiles" */
+  profiles: Array<Profiles>;
+  /** fetch aggregated fields from the table: "profiles" */
+  profilesAggregate: Profiles_Aggregate;
   /** fetch data from the table: "auth.users" using primary key columns */
   user?: Maybe<Users>;
   /** fetch data from the table: "auth.users" */
@@ -3529,6 +3714,29 @@ export type Query_RootFilesAggregateArgs = {
 };
 
 
+export type Query_RootProfileArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type Query_RootProfilesArgs = {
+  distinct_on?: InputMaybe<Array<Profiles_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Profiles_Order_By>>;
+  where?: InputMaybe<Profiles_Bool_Exp>;
+};
+
+
+export type Query_RootProfilesAggregateArgs = {
+  distinct_on?: InputMaybe<Array<Profiles_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Profiles_Order_By>>;
+  where?: InputMaybe<Profiles_Bool_Exp>;
+};
+
+
 export type Query_RootUserArgs = {
   id: Scalars['uuid'];
 };
@@ -3619,6 +3827,12 @@ export type Subscription_Root = {
   files: Array<Files>;
   /** fetch aggregated fields from the table: "storage.files" */
   filesAggregate: Files_Aggregate;
+  /** fetch data from the table: "profiles" using primary key columns */
+  profile?: Maybe<Profiles>;
+  /** fetch data from the table: "profiles" */
+  profiles: Array<Profiles>;
+  /** fetch aggregated fields from the table: "profiles" */
+  profilesAggregate: Profiles_Aggregate;
   /** fetch data from the table: "auth.users" using primary key columns */
   user?: Maybe<Users>;
   /** fetch data from the table: "auth.users" */
@@ -3881,6 +4095,29 @@ export type Subscription_RootFilesAggregateArgs = {
 };
 
 
+export type Subscription_RootProfileArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type Subscription_RootProfilesArgs = {
+  distinct_on?: InputMaybe<Array<Profiles_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Profiles_Order_By>>;
+  where?: InputMaybe<Profiles_Bool_Exp>;
+};
+
+
+export type Subscription_RootProfilesAggregateArgs = {
+  distinct_on?: InputMaybe<Array<Profiles_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Profiles_Order_By>>;
+  where?: InputMaybe<Profiles_Bool_Exp>;
+};
+
+
 export type Subscription_RootUserArgs = {
   id: Scalars['uuid'];
 };
@@ -3945,6 +4182,8 @@ export type Users = {
   passwordHash?: Maybe<Scalars['String']>;
   phoneNumber?: Maybe<Scalars['String']>;
   phoneNumberVerified: Scalars['Boolean'];
+  /** An object relationship */
+  profile?: Maybe<Profiles>;
   /** An array relationship */
   refreshTokens: Array<AuthRefreshTokens>;
   /** An aggregate relationship */
@@ -4117,6 +4356,7 @@ export type Users_Bool_Exp = {
   passwordHash?: InputMaybe<String_Comparison_Exp>;
   phoneNumber?: InputMaybe<String_Comparison_Exp>;
   phoneNumberVerified?: InputMaybe<Boolean_Comparison_Exp>;
+  profile?: InputMaybe<Profiles_Bool_Exp>;
   refreshTokens?: InputMaybe<AuthRefreshTokens_Bool_Exp>;
   roles?: InputMaybe<AuthUserRoles_Bool_Exp>;
   ticket?: InputMaybe<String_Comparison_Exp>;
@@ -4175,6 +4415,7 @@ export type Users_Insert_Input = {
   passwordHash?: InputMaybe<Scalars['String']>;
   phoneNumber?: InputMaybe<Scalars['String']>;
   phoneNumberVerified?: InputMaybe<Scalars['Boolean']>;
+  profile?: InputMaybe<Profiles_Obj_Rel_Insert_Input>;
   refreshTokens?: InputMaybe<AuthRefreshTokens_Arr_Rel_Insert_Input>;
   roles?: InputMaybe<AuthUserRoles_Arr_Rel_Insert_Input>;
   ticket?: InputMaybe<Scalars['String']>;
@@ -4325,6 +4566,7 @@ export type Users_Order_By = {
   passwordHash?: InputMaybe<Order_By>;
   phoneNumber?: InputMaybe<Order_By>;
   phoneNumberVerified?: InputMaybe<Order_By>;
+  profile?: InputMaybe<Profiles_Order_By>;
   refreshTokens_aggregate?: InputMaybe<AuthRefreshTokens_Aggregate_Order_By>;
   roles_aggregate?: InputMaybe<AuthUserRoles_Aggregate_Order_By>;
   ticket?: InputMaybe<Order_By>;
