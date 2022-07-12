@@ -37,6 +37,7 @@ insert_permissions:
     - doc_id
     - download_allowed
     - is_active
+    - name
     - passcode
     - require_email_to_view
   role: user
@@ -53,14 +54,15 @@ select_permissions:
   role: public
 - permission:
     columns:
-    - download_allowed
-    - is_active
-    - require_email_to_view
-    - passcode
     - created_at
-    - updated_at
     - doc_id
+    - download_allowed
     - id
+    - is_active
+    - name
+    - passcode
+    - require_email_to_view
+    - updated_at
     filter:
       doc:
         user_id:

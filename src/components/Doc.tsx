@@ -1,8 +1,10 @@
 import copy from 'copy-to-clipboard'
 import { useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { formatDistanceToNow, parseISO } from 'date-fns'
 import { useGetDocQuery } from '../utils/__generated__/graphql'
 import { CreateLinkSlideOver } from './DocCrateLinkSlideOver'
+import { DocVisits } from './DocVisits'
 
 export function Doc() {
   const { id } = useParams()
@@ -17,7 +19,7 @@ export function Doc() {
 
   const { doc } = data
 
-  if (!doc) {
+  if (!doc || !id) {
     return <div>No document found</div>
   }
 
@@ -38,7 +40,7 @@ export function Doc() {
 
       <div className="my-12">
         <div className="text-3xl my-4">All Visits</div>
-        <div>Coming soon...</div>
+        <DocVisits docId={id} />
       </div>
 
       <div className="my-12">
@@ -54,13 +56,37 @@ export function Doc() {
                         scope="col"
                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                       >
+                        Name
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
                         Link
                       </th>
                       <th
                         scope="col"
                         className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                       >
-                        createdAt
+                        Email Required
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
+                        Download Allowed
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
+                        Passcode
+                      </th>
+                      <th
+                        scope="col"
+                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                      >
+                        Created
                       </th>
                     </tr>
                   </thead>
@@ -70,6 +96,9 @@ export function Doc() {
 
                       return (
                         <tr key={docLink.id ?? 0}>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {docLink.name}
+                          </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                             <span
                               className="border border-gray-200 p-2 rounded-md cursor-pointer select-none"
@@ -82,7 +111,18 @@ export function Doc() {
                             </span>
                           </td>
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {docLink.createdAt}
+                            {docLink.requireEmailToView ? 'Yes' : 'No'}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {docLink.downloadAllowed ? 'Yes' : 'No'}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {docLink.passcode ? 'Yes' : 'No'}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                            {formatDistanceToNow(parseISO(docLink.createdAt), {
+                              addSuffix: true
+                            })}
                           </td>
                         </tr>
                       )

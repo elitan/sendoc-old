@@ -1419,6 +1419,215 @@ export type Citext_Comparison_Exp = {
   _similar?: InputMaybe<Scalars['citext']>;
 };
 
+/** columns and relationships of "doc_visits" */
+export type DocVisits = {
+  __typename?: 'docVisits';
+  city?: Maybe<Scalars['String']>;
+  country?: Maybe<Scalars['String']>;
+  createdAt: Scalars['timestamptz'];
+  /** An object relationship */
+  docLink: Doc_Links;
+  docLinkId: Scalars['uuid'];
+  email?: Maybe<Scalars['String']>;
+  id: Scalars['uuid'];
+  updatedAt: Scalars['timestamptz'];
+};
+
+/** aggregated selection of "doc_visits" */
+export type DocVisits_Aggregate = {
+  __typename?: 'docVisits_aggregate';
+  aggregate?: Maybe<DocVisits_Aggregate_Fields>;
+  nodes: Array<DocVisits>;
+};
+
+/** aggregate fields of "doc_visits" */
+export type DocVisits_Aggregate_Fields = {
+  __typename?: 'docVisits_aggregate_fields';
+  count: Scalars['Int'];
+  max?: Maybe<DocVisits_Max_Fields>;
+  min?: Maybe<DocVisits_Min_Fields>;
+};
+
+
+/** aggregate fields of "doc_visits" */
+export type DocVisits_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<DocVisits_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** order by aggregate values of table "doc_visits" */
+export type DocVisits_Aggregate_Order_By = {
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<DocVisits_Max_Order_By>;
+  min?: InputMaybe<DocVisits_Min_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "doc_visits" */
+export type DocVisits_Arr_Rel_Insert_Input = {
+  data: Array<DocVisits_Insert_Input>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<DocVisits_On_Conflict>;
+};
+
+/** Boolean expression to filter rows from the table "doc_visits". All fields are combined with a logical 'AND'. */
+export type DocVisits_Bool_Exp = {
+  _and?: InputMaybe<Array<DocVisits_Bool_Exp>>;
+  _not?: InputMaybe<DocVisits_Bool_Exp>;
+  _or?: InputMaybe<Array<DocVisits_Bool_Exp>>;
+  city?: InputMaybe<String_Comparison_Exp>;
+  country?: InputMaybe<String_Comparison_Exp>;
+  createdAt?: InputMaybe<Timestamptz_Comparison_Exp>;
+  docLink?: InputMaybe<Doc_Links_Bool_Exp>;
+  docLinkId?: InputMaybe<Uuid_Comparison_Exp>;
+  email?: InputMaybe<String_Comparison_Exp>;
+  id?: InputMaybe<Uuid_Comparison_Exp>;
+  updatedAt?: InputMaybe<Timestamptz_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "doc_visits" */
+export enum DocVisits_Constraint {
+  /** unique or primary key constraint */
+  DocVisitsPkey = 'doc_visits_pkey'
+}
+
+/** input type for inserting data into table "doc_visits" */
+export type DocVisits_Insert_Input = {
+  city?: InputMaybe<Scalars['String']>;
+  country?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['timestamptz']>;
+  docLink?: InputMaybe<Doc_Links_Obj_Rel_Insert_Input>;
+  docLinkId?: InputMaybe<Scalars['uuid']>;
+  email?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  updatedAt?: InputMaybe<Scalars['timestamptz']>;
+};
+
+/** aggregate max on columns */
+export type DocVisits_Max_Fields = {
+  __typename?: 'docVisits_max_fields';
+  city?: Maybe<Scalars['String']>;
+  country?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  docLinkId?: Maybe<Scalars['uuid']>;
+  email?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+};
+
+/** order by max() on columns of table "doc_visits" */
+export type DocVisits_Max_Order_By = {
+  city?: InputMaybe<Order_By>;
+  country?: InputMaybe<Order_By>;
+  createdAt?: InputMaybe<Order_By>;
+  docLinkId?: InputMaybe<Order_By>;
+  email?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  updatedAt?: InputMaybe<Order_By>;
+};
+
+/** aggregate min on columns */
+export type DocVisits_Min_Fields = {
+  __typename?: 'docVisits_min_fields';
+  city?: Maybe<Scalars['String']>;
+  country?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['timestamptz']>;
+  docLinkId?: Maybe<Scalars['uuid']>;
+  email?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['uuid']>;
+  updatedAt?: Maybe<Scalars['timestamptz']>;
+};
+
+/** order by min() on columns of table "doc_visits" */
+export type DocVisits_Min_Order_By = {
+  city?: InputMaybe<Order_By>;
+  country?: InputMaybe<Order_By>;
+  createdAt?: InputMaybe<Order_By>;
+  docLinkId?: InputMaybe<Order_By>;
+  email?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  updatedAt?: InputMaybe<Order_By>;
+};
+
+/** response of any mutation on the table "doc_visits" */
+export type DocVisits_Mutation_Response = {
+  __typename?: 'docVisits_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<DocVisits>;
+};
+
+/** on_conflict condition type for table "doc_visits" */
+export type DocVisits_On_Conflict = {
+  constraint: DocVisits_Constraint;
+  update_columns?: Array<DocVisits_Update_Column>;
+  where?: InputMaybe<DocVisits_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "doc_visits". */
+export type DocVisits_Order_By = {
+  city?: InputMaybe<Order_By>;
+  country?: InputMaybe<Order_By>;
+  createdAt?: InputMaybe<Order_By>;
+  docLink?: InputMaybe<Doc_Links_Order_By>;
+  docLinkId?: InputMaybe<Order_By>;
+  email?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  updatedAt?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: docVisits */
+export type DocVisits_Pk_Columns_Input = {
+  id: Scalars['uuid'];
+};
+
+/** select columns of table "doc_visits" */
+export enum DocVisits_Select_Column {
+  /** column name */
+  City = 'city',
+  /** column name */
+  Country = 'country',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  DocLinkId = 'docLinkId',
+  /** column name */
+  Email = 'email',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  UpdatedAt = 'updatedAt'
+}
+
+/** input type for updating data in table "doc_visits" */
+export type DocVisits_Set_Input = {
+  city?: InputMaybe<Scalars['String']>;
+  country?: InputMaybe<Scalars['String']>;
+  createdAt?: InputMaybe<Scalars['timestamptz']>;
+  docLinkId?: InputMaybe<Scalars['uuid']>;
+  email?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['uuid']>;
+  updatedAt?: InputMaybe<Scalars['timestamptz']>;
+};
+
+/** update columns of table "doc_visits" */
+export enum DocVisits_Update_Column {
+  /** column name */
+  City = 'city',
+  /** column name */
+  Country = 'country',
+  /** column name */
+  CreatedAt = 'createdAt',
+  /** column name */
+  DocLinkId = 'docLinkId',
+  /** column name */
+  Email = 'email',
+  /** column name */
+  Id = 'id',
+  /** column name */
+  UpdatedAt = 'updatedAt'
+}
+
 /** columns and relationships of "doc_links" */
 export type Doc_Links = {
   __typename?: 'doc_links';
@@ -1426,13 +1635,14 @@ export type Doc_Links = {
   /** An object relationship */
   doc: Docs;
   docId: Scalars['uuid'];
-  /** An array relationship */
-  docVisits: Array<Doc_Visits>;
+  /** fetch data from the table: "doc_visits" */
+  docVisits: Array<DocVisits>;
   /** An aggregate relationship */
-  docVisits_aggregate: Doc_Visits_Aggregate;
+  docVisits_aggregate: DocVisits_Aggregate;
   downloadAllowed: Scalars['Boolean'];
   id: Scalars['uuid'];
   isActive: Scalars['Boolean'];
+  name: Scalars['String'];
   passcode?: Maybe<Scalars['String']>;
   requireEmailToView: Scalars['Boolean'];
   updatedAt: Scalars['timestamptz'];
@@ -1441,21 +1651,21 @@ export type Doc_Links = {
 
 /** columns and relationships of "doc_links" */
 export type Doc_LinksDocVisitsArgs = {
-  distinct_on?: InputMaybe<Array<Doc_Visits_Select_Column>>;
+  distinct_on?: InputMaybe<Array<DocVisits_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Doc_Visits_Order_By>>;
-  where?: InputMaybe<Doc_Visits_Bool_Exp>;
+  order_by?: InputMaybe<Array<DocVisits_Order_By>>;
+  where?: InputMaybe<DocVisits_Bool_Exp>;
 };
 
 
 /** columns and relationships of "doc_links" */
 export type Doc_LinksDocVisits_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Doc_Visits_Select_Column>>;
+  distinct_on?: InputMaybe<Array<DocVisits_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Doc_Visits_Order_By>>;
-  where?: InputMaybe<Doc_Visits_Bool_Exp>;
+  order_by?: InputMaybe<Array<DocVisits_Order_By>>;
+  where?: InputMaybe<DocVisits_Bool_Exp>;
 };
 
 /** aggregated selection of "doc_links" */
@@ -1502,10 +1712,11 @@ export type Doc_Links_Bool_Exp = {
   createdAt?: InputMaybe<Timestamptz_Comparison_Exp>;
   doc?: InputMaybe<Docs_Bool_Exp>;
   docId?: InputMaybe<Uuid_Comparison_Exp>;
-  docVisits?: InputMaybe<Doc_Visits_Bool_Exp>;
+  docVisits?: InputMaybe<DocVisits_Bool_Exp>;
   downloadAllowed?: InputMaybe<Boolean_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
   isActive?: InputMaybe<Boolean_Comparison_Exp>;
+  name?: InputMaybe<String_Comparison_Exp>;
   passcode?: InputMaybe<String_Comparison_Exp>;
   requireEmailToView?: InputMaybe<Boolean_Comparison_Exp>;
   updatedAt?: InputMaybe<Timestamptz_Comparison_Exp>;
@@ -1522,10 +1733,11 @@ export type Doc_Links_Insert_Input = {
   createdAt?: InputMaybe<Scalars['timestamptz']>;
   doc?: InputMaybe<Docs_Obj_Rel_Insert_Input>;
   docId?: InputMaybe<Scalars['uuid']>;
-  docVisits?: InputMaybe<Doc_Visits_Arr_Rel_Insert_Input>;
+  docVisits?: InputMaybe<DocVisits_Arr_Rel_Insert_Input>;
   downloadAllowed?: InputMaybe<Scalars['Boolean']>;
   id?: InputMaybe<Scalars['uuid']>;
   isActive?: InputMaybe<Scalars['Boolean']>;
+  name?: InputMaybe<Scalars['String']>;
   passcode?: InputMaybe<Scalars['String']>;
   requireEmailToView?: InputMaybe<Scalars['Boolean']>;
   updatedAt?: InputMaybe<Scalars['timestamptz']>;
@@ -1537,6 +1749,7 @@ export type Doc_Links_Max_Fields = {
   createdAt?: Maybe<Scalars['timestamptz']>;
   docId?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
+  name?: Maybe<Scalars['String']>;
   passcode?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['timestamptz']>;
 };
@@ -1546,6 +1759,7 @@ export type Doc_Links_Max_Order_By = {
   createdAt?: InputMaybe<Order_By>;
   docId?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+  name?: InputMaybe<Order_By>;
   passcode?: InputMaybe<Order_By>;
   updatedAt?: InputMaybe<Order_By>;
 };
@@ -1556,6 +1770,7 @@ export type Doc_Links_Min_Fields = {
   createdAt?: Maybe<Scalars['timestamptz']>;
   docId?: Maybe<Scalars['uuid']>;
   id?: Maybe<Scalars['uuid']>;
+  name?: Maybe<Scalars['String']>;
   passcode?: Maybe<Scalars['String']>;
   updatedAt?: Maybe<Scalars['timestamptz']>;
 };
@@ -1565,6 +1780,7 @@ export type Doc_Links_Min_Order_By = {
   createdAt?: InputMaybe<Order_By>;
   docId?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+  name?: InputMaybe<Order_By>;
   passcode?: InputMaybe<Order_By>;
   updatedAt?: InputMaybe<Order_By>;
 };
@@ -1597,10 +1813,11 @@ export type Doc_Links_Order_By = {
   createdAt?: InputMaybe<Order_By>;
   doc?: InputMaybe<Docs_Order_By>;
   docId?: InputMaybe<Order_By>;
-  docVisits_aggregate?: InputMaybe<Doc_Visits_Aggregate_Order_By>;
+  docVisits_aggregate?: InputMaybe<DocVisits_Aggregate_Order_By>;
   downloadAllowed?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   isActive?: InputMaybe<Order_By>;
+  name?: InputMaybe<Order_By>;
   passcode?: InputMaybe<Order_By>;
   requireEmailToView?: InputMaybe<Order_By>;
   updatedAt?: InputMaybe<Order_By>;
@@ -1624,6 +1841,8 @@ export enum Doc_Links_Select_Column {
   /** column name */
   IsActive = 'isActive',
   /** column name */
+  Name = 'name',
+  /** column name */
   Passcode = 'passcode',
   /** column name */
   RequireEmailToView = 'requireEmailToView',
@@ -1638,6 +1857,7 @@ export type Doc_Links_Set_Input = {
   downloadAllowed?: InputMaybe<Scalars['Boolean']>;
   id?: InputMaybe<Scalars['uuid']>;
   isActive?: InputMaybe<Scalars['Boolean']>;
+  name?: InputMaybe<Scalars['String']>;
   passcode?: InputMaybe<Scalars['String']>;
   requireEmailToView?: InputMaybe<Scalars['Boolean']>;
   updatedAt?: InputMaybe<Scalars['timestamptz']>;
@@ -1656,192 +1876,11 @@ export enum Doc_Links_Update_Column {
   /** column name */
   IsActive = 'isActive',
   /** column name */
+  Name = 'name',
+  /** column name */
   Passcode = 'passcode',
   /** column name */
   RequireEmailToView = 'requireEmailToView',
-  /** column name */
-  UpdatedAt = 'updatedAt'
-}
-
-/** columns and relationships of "doc_visits" */
-export type Doc_Visits = {
-  __typename?: 'doc_visits';
-  createdAt: Scalars['timestamptz'];
-  /** An object relationship */
-  docLink: Doc_Links;
-  docLinkId: Scalars['uuid'];
-  email?: Maybe<Scalars['String']>;
-  id: Scalars['uuid'];
-  updatedAt: Scalars['timestamptz'];
-};
-
-/** aggregated selection of "doc_visits" */
-export type Doc_Visits_Aggregate = {
-  __typename?: 'doc_visits_aggregate';
-  aggregate?: Maybe<Doc_Visits_Aggregate_Fields>;
-  nodes: Array<Doc_Visits>;
-};
-
-/** aggregate fields of "doc_visits" */
-export type Doc_Visits_Aggregate_Fields = {
-  __typename?: 'doc_visits_aggregate_fields';
-  count: Scalars['Int'];
-  max?: Maybe<Doc_Visits_Max_Fields>;
-  min?: Maybe<Doc_Visits_Min_Fields>;
-};
-
-
-/** aggregate fields of "doc_visits" */
-export type Doc_Visits_Aggregate_FieldsCountArgs = {
-  columns?: InputMaybe<Array<Doc_Visits_Select_Column>>;
-  distinct?: InputMaybe<Scalars['Boolean']>;
-};
-
-/** order by aggregate values of table "doc_visits" */
-export type Doc_Visits_Aggregate_Order_By = {
-  count?: InputMaybe<Order_By>;
-  max?: InputMaybe<Doc_Visits_Max_Order_By>;
-  min?: InputMaybe<Doc_Visits_Min_Order_By>;
-};
-
-/** input type for inserting array relation for remote table "doc_visits" */
-export type Doc_Visits_Arr_Rel_Insert_Input = {
-  data: Array<Doc_Visits_Insert_Input>;
-  /** upsert condition */
-  on_conflict?: InputMaybe<Doc_Visits_On_Conflict>;
-};
-
-/** Boolean expression to filter rows from the table "doc_visits". All fields are combined with a logical 'AND'. */
-export type Doc_Visits_Bool_Exp = {
-  _and?: InputMaybe<Array<Doc_Visits_Bool_Exp>>;
-  _not?: InputMaybe<Doc_Visits_Bool_Exp>;
-  _or?: InputMaybe<Array<Doc_Visits_Bool_Exp>>;
-  createdAt?: InputMaybe<Timestamptz_Comparison_Exp>;
-  docLink?: InputMaybe<Doc_Links_Bool_Exp>;
-  docLinkId?: InputMaybe<Uuid_Comparison_Exp>;
-  email?: InputMaybe<String_Comparison_Exp>;
-  id?: InputMaybe<Uuid_Comparison_Exp>;
-  updatedAt?: InputMaybe<Timestamptz_Comparison_Exp>;
-};
-
-/** unique or primary key constraints on table "doc_visits" */
-export enum Doc_Visits_Constraint {
-  /** unique or primary key constraint */
-  DocVisitsPkey = 'doc_visits_pkey'
-}
-
-/** input type for inserting data into table "doc_visits" */
-export type Doc_Visits_Insert_Input = {
-  createdAt?: InputMaybe<Scalars['timestamptz']>;
-  docLink?: InputMaybe<Doc_Links_Obj_Rel_Insert_Input>;
-  docLinkId?: InputMaybe<Scalars['uuid']>;
-  email?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  updatedAt?: InputMaybe<Scalars['timestamptz']>;
-};
-
-/** aggregate max on columns */
-export type Doc_Visits_Max_Fields = {
-  __typename?: 'doc_visits_max_fields';
-  createdAt?: Maybe<Scalars['timestamptz']>;
-  docLinkId?: Maybe<Scalars['uuid']>;
-  email?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['uuid']>;
-  updatedAt?: Maybe<Scalars['timestamptz']>;
-};
-
-/** order by max() on columns of table "doc_visits" */
-export type Doc_Visits_Max_Order_By = {
-  createdAt?: InputMaybe<Order_By>;
-  docLinkId?: InputMaybe<Order_By>;
-  email?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  updatedAt?: InputMaybe<Order_By>;
-};
-
-/** aggregate min on columns */
-export type Doc_Visits_Min_Fields = {
-  __typename?: 'doc_visits_min_fields';
-  createdAt?: Maybe<Scalars['timestamptz']>;
-  docLinkId?: Maybe<Scalars['uuid']>;
-  email?: Maybe<Scalars['String']>;
-  id?: Maybe<Scalars['uuid']>;
-  updatedAt?: Maybe<Scalars['timestamptz']>;
-};
-
-/** order by min() on columns of table "doc_visits" */
-export type Doc_Visits_Min_Order_By = {
-  createdAt?: InputMaybe<Order_By>;
-  docLinkId?: InputMaybe<Order_By>;
-  email?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  updatedAt?: InputMaybe<Order_By>;
-};
-
-/** response of any mutation on the table "doc_visits" */
-export type Doc_Visits_Mutation_Response = {
-  __typename?: 'doc_visits_mutation_response';
-  /** number of rows affected by the mutation */
-  affected_rows: Scalars['Int'];
-  /** data from the rows affected by the mutation */
-  returning: Array<Doc_Visits>;
-};
-
-/** on_conflict condition type for table "doc_visits" */
-export type Doc_Visits_On_Conflict = {
-  constraint: Doc_Visits_Constraint;
-  update_columns?: Array<Doc_Visits_Update_Column>;
-  where?: InputMaybe<Doc_Visits_Bool_Exp>;
-};
-
-/** Ordering options when selecting data from "doc_visits". */
-export type Doc_Visits_Order_By = {
-  createdAt?: InputMaybe<Order_By>;
-  docLink?: InputMaybe<Doc_Links_Order_By>;
-  docLinkId?: InputMaybe<Order_By>;
-  email?: InputMaybe<Order_By>;
-  id?: InputMaybe<Order_By>;
-  updatedAt?: InputMaybe<Order_By>;
-};
-
-/** primary key columns input for table: doc_visits */
-export type Doc_Visits_Pk_Columns_Input = {
-  id: Scalars['uuid'];
-};
-
-/** select columns of table "doc_visits" */
-export enum Doc_Visits_Select_Column {
-  /** column name */
-  CreatedAt = 'createdAt',
-  /** column name */
-  DocLinkId = 'docLinkId',
-  /** column name */
-  Email = 'email',
-  /** column name */
-  Id = 'id',
-  /** column name */
-  UpdatedAt = 'updatedAt'
-}
-
-/** input type for updating data in table "doc_visits" */
-export type Doc_Visits_Set_Input = {
-  createdAt?: InputMaybe<Scalars['timestamptz']>;
-  docLinkId?: InputMaybe<Scalars['uuid']>;
-  email?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['uuid']>;
-  updatedAt?: InputMaybe<Scalars['timestamptz']>;
-};
-
-/** update columns of table "doc_visits" */
-export enum Doc_Visits_Update_Column {
-  /** column name */
-  CreatedAt = 'createdAt',
-  /** column name */
-  DocLinkId = 'docLinkId',
-  /** column name */
-  Email = 'email',
-  /** column name */
-  Id = 'id',
   /** column name */
   UpdatedAt = 'updatedAt'
 }
@@ -2524,6 +2563,10 @@ export type Mutation_Root = {
   deleteBucket?: Maybe<Buckets>;
   /** delete data from the table: "storage.buckets" */
   deleteBuckets?: Maybe<Buckets_Mutation_Response>;
+  /** delete single row from the table: "doc_visits" */
+  deleteDocVisit?: Maybe<DocVisits>;
+  /** delete data from the table: "doc_visits" */
+  deleteDocVisits?: Maybe<DocVisits_Mutation_Response>;
   /** delete data from the table: "docs" */
   deleteDocs?: Maybe<Docs_Mutation_Response>;
   /** delete single row from the table: "storage.files" */
@@ -2538,10 +2581,6 @@ export type Mutation_Root = {
   delete_doc_links?: Maybe<Doc_Links_Mutation_Response>;
   /** delete single row from the table: "doc_links" */
   delete_doc_links_by_pk?: Maybe<Doc_Links>;
-  /** delete data from the table: "doc_visits" */
-  delete_doc_visits?: Maybe<Doc_Visits_Mutation_Response>;
-  /** delete single row from the table: "doc_visits" */
-  delete_doc_visits_by_pk?: Maybe<Doc_Visits>;
   /** insert a single row into the table: "auth.providers" */
   insertAuthProvider?: Maybe<AuthProviders>;
   /** insert a single row into the table: "auth.provider_requests" */
@@ -2576,6 +2615,10 @@ export type Mutation_Root = {
   insertDocLink?: Maybe<Doc_Links>;
   /** insert data into the table: "doc_links" */
   insertDocLinks?: Maybe<Doc_Links_Mutation_Response>;
+  /** insert a single row into the table: "doc_visits" */
+  insertDocVisit?: Maybe<DocVisits>;
+  /** insert data into the table: "doc_visits" */
+  insertDocVisits?: Maybe<DocVisits_Mutation_Response>;
   /** insert data into the table: "docs" */
   insertDocs?: Maybe<Docs_Mutation_Response>;
   /** insert a single row into the table: "storage.files" */
@@ -2586,10 +2629,6 @@ export type Mutation_Root = {
   insertUser?: Maybe<Users>;
   /** insert data into the table: "auth.users" */
   insertUsers?: Maybe<Users_Mutation_Response>;
-  /** insert data into the table: "doc_visits" */
-  insert_doc_visits?: Maybe<Doc_Visits_Mutation_Response>;
-  /** insert a single row into the table: "doc_visits" */
-  insert_doc_visits_one?: Maybe<Doc_Visits>;
   /** update single row of the table: "auth.providers" */
   updateAuthProvider?: Maybe<AuthProviders>;
   /** update single row of the table: "auth.provider_requests" */
@@ -2620,6 +2659,10 @@ export type Mutation_Root = {
   updateBuckets?: Maybe<Buckets_Mutation_Response>;
   /** update single row of the table: "docs" */
   updateDoc?: Maybe<Docs>;
+  /** update single row of the table: "doc_visits" */
+  updateDocVisit?: Maybe<DocVisits>;
+  /** update data of the table: "doc_visits" */
+  updateDocVisits?: Maybe<DocVisits_Mutation_Response>;
   /** update data of the table: "docs" */
   updateDocs?: Maybe<Docs_Mutation_Response>;
   /** update single row of the table: "storage.files" */
@@ -2634,10 +2677,6 @@ export type Mutation_Root = {
   update_doc_links?: Maybe<Doc_Links_Mutation_Response>;
   /** update single row of the table: "doc_links" */
   update_doc_links_by_pk?: Maybe<Doc_Links>;
-  /** update data of the table: "doc_visits" */
-  update_doc_visits?: Maybe<Doc_Visits_Mutation_Response>;
-  /** update single row of the table: "doc_visits" */
-  update_doc_visits_by_pk?: Maybe<Doc_Visits>;
 };
 
 
@@ -2732,6 +2771,18 @@ export type Mutation_RootDeleteBucketsArgs = {
 
 
 /** mutation root */
+export type Mutation_RootDeleteDocVisitArgs = {
+  id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDeleteDocVisitsArgs = {
+  where: DocVisits_Bool_Exp;
+};
+
+
+/** mutation root */
 export type Mutation_RootDeleteDocsArgs = {
   where: Docs_Bool_Exp;
 };
@@ -2769,18 +2820,6 @@ export type Mutation_RootDelete_Doc_LinksArgs = {
 
 /** mutation root */
 export type Mutation_RootDelete_Doc_Links_By_PkArgs = {
-  id: Scalars['uuid'];
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_Doc_VisitsArgs = {
-  where: Doc_Visits_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootDelete_Doc_Visits_By_PkArgs = {
   id: Scalars['uuid'];
 };
 
@@ -2905,6 +2944,20 @@ export type Mutation_RootInsertDocLinksArgs = {
 
 
 /** mutation root */
+export type Mutation_RootInsertDocVisitArgs = {
+  object: DocVisits_Insert_Input;
+  on_conflict?: InputMaybe<DocVisits_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsertDocVisitsArgs = {
+  objects: Array<DocVisits_Insert_Input>;
+  on_conflict?: InputMaybe<DocVisits_On_Conflict>;
+};
+
+
+/** mutation root */
 export type Mutation_RootInsertDocsArgs = {
   objects: Array<Docs_Insert_Input>;
   on_conflict?: InputMaybe<Docs_On_Conflict>;
@@ -2936,20 +2989,6 @@ export type Mutation_RootInsertUserArgs = {
 export type Mutation_RootInsertUsersArgs = {
   objects: Array<Users_Insert_Input>;
   on_conflict?: InputMaybe<Users_On_Conflict>;
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_Doc_VisitsArgs = {
-  objects: Array<Doc_Visits_Insert_Input>;
-  on_conflict?: InputMaybe<Doc_Visits_On_Conflict>;
-};
-
-
-/** mutation root */
-export type Mutation_RootInsert_Doc_Visits_OneArgs = {
-  object: Doc_Visits_Insert_Input;
-  on_conflict?: InputMaybe<Doc_Visits_On_Conflict>;
 };
 
 
@@ -3071,6 +3110,20 @@ export type Mutation_RootUpdateDocArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdateDocVisitArgs = {
+  _set?: InputMaybe<DocVisits_Set_Input>;
+  pk_columns: DocVisits_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdateDocVisitsArgs = {
+  _set?: InputMaybe<DocVisits_Set_Input>;
+  where: DocVisits_Bool_Exp;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdateDocsArgs = {
   _set?: InputMaybe<Docs_Set_Input>;
   where: Docs_Bool_Exp;
@@ -3128,20 +3181,6 @@ export type Mutation_RootUpdate_Doc_LinksArgs = {
 export type Mutation_RootUpdate_Doc_Links_By_PkArgs = {
   _set?: InputMaybe<Doc_Links_Set_Input>;
   pk_columns: Doc_Links_Pk_Columns_Input;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdate_Doc_VisitsArgs = {
-  _set?: InputMaybe<Doc_Visits_Set_Input>;
-  where: Doc_Visits_Bool_Exp;
-};
-
-
-/** mutation root */
-export type Mutation_RootUpdate_Doc_Visits_By_PkArgs = {
-  _set?: InputMaybe<Doc_Visits_Set_Input>;
-  pk_columns: Doc_Visits_Pk_Columns_Input;
 };
 
 /** column ordering options */
@@ -3210,14 +3249,14 @@ export type Query_Root = {
   docLink?: Maybe<Doc_Links>;
   /** An array relationship */
   docLinks: Array<Doc_Links>;
+  /** fetch data from the table: "doc_visits" using primary key columns */
+  docVisit?: Maybe<DocVisits>;
+  /** fetch aggregated fields from the table: "doc_visits" */
+  docVisitAggregate: DocVisits_Aggregate;
+  /** fetch data from the table: "doc_visits" */
+  docVisits: Array<DocVisits>;
   /** fetch aggregated fields from the table: "doc_links" */
   doc_links_aggregate: Doc_Links_Aggregate;
-  /** fetch data from the table: "doc_visits" */
-  doc_visits: Array<Doc_Visits>;
-  /** fetch aggregated fields from the table: "doc_visits" */
-  doc_visits_aggregate: Doc_Visits_Aggregate;
-  /** fetch data from the table: "doc_visits" using primary key columns */
-  doc_visits_by_pk?: Maybe<Doc_Visits>;
   /** An array relationship */
   docs: Array<Docs>;
   /** fetch aggregated fields from the table: "docs" */
@@ -3417,35 +3456,35 @@ export type Query_RootDocLinksArgs = {
 };
 
 
+export type Query_RootDocVisitArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type Query_RootDocVisitAggregateArgs = {
+  distinct_on?: InputMaybe<Array<DocVisits_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<DocVisits_Order_By>>;
+  where?: InputMaybe<DocVisits_Bool_Exp>;
+};
+
+
+export type Query_RootDocVisitsArgs = {
+  distinct_on?: InputMaybe<Array<DocVisits_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<DocVisits_Order_By>>;
+  where?: InputMaybe<DocVisits_Bool_Exp>;
+};
+
+
 export type Query_RootDoc_Links_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Doc_Links_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
   order_by?: InputMaybe<Array<Doc_Links_Order_By>>;
   where?: InputMaybe<Doc_Links_Bool_Exp>;
-};
-
-
-export type Query_RootDoc_VisitsArgs = {
-  distinct_on?: InputMaybe<Array<Doc_Visits_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Doc_Visits_Order_By>>;
-  where?: InputMaybe<Doc_Visits_Bool_Exp>;
-};
-
-
-export type Query_RootDoc_Visits_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Doc_Visits_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Doc_Visits_Order_By>>;
-  where?: InputMaybe<Doc_Visits_Bool_Exp>;
-};
-
-
-export type Query_RootDoc_Visits_By_PkArgs = {
-  id: Scalars['uuid'];
 };
 
 
@@ -3562,14 +3601,14 @@ export type Subscription_Root = {
   docLink?: Maybe<Doc_Links>;
   /** An array relationship */
   docLinks: Array<Doc_Links>;
+  /** fetch data from the table: "doc_visits" using primary key columns */
+  docVisit?: Maybe<DocVisits>;
+  /** fetch aggregated fields from the table: "doc_visits" */
+  docVisitAggregate: DocVisits_Aggregate;
+  /** fetch data from the table: "doc_visits" */
+  docVisits: Array<DocVisits>;
   /** fetch aggregated fields from the table: "doc_links" */
   doc_links_aggregate: Doc_Links_Aggregate;
-  /** fetch data from the table: "doc_visits" */
-  doc_visits: Array<Doc_Visits>;
-  /** fetch aggregated fields from the table: "doc_visits" */
-  doc_visits_aggregate: Doc_Visits_Aggregate;
-  /** fetch data from the table: "doc_visits" using primary key columns */
-  doc_visits_by_pk?: Maybe<Doc_Visits>;
   /** An array relationship */
   docs: Array<Docs>;
   /** fetch aggregated fields from the table: "docs" */
@@ -3769,35 +3808,35 @@ export type Subscription_RootDocLinksArgs = {
 };
 
 
+export type Subscription_RootDocVisitArgs = {
+  id: Scalars['uuid'];
+};
+
+
+export type Subscription_RootDocVisitAggregateArgs = {
+  distinct_on?: InputMaybe<Array<DocVisits_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<DocVisits_Order_By>>;
+  where?: InputMaybe<DocVisits_Bool_Exp>;
+};
+
+
+export type Subscription_RootDocVisitsArgs = {
+  distinct_on?: InputMaybe<Array<DocVisits_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<DocVisits_Order_By>>;
+  where?: InputMaybe<DocVisits_Bool_Exp>;
+};
+
+
 export type Subscription_RootDoc_Links_AggregateArgs = {
   distinct_on?: InputMaybe<Array<Doc_Links_Select_Column>>;
   limit?: InputMaybe<Scalars['Int']>;
   offset?: InputMaybe<Scalars['Int']>;
   order_by?: InputMaybe<Array<Doc_Links_Order_By>>;
   where?: InputMaybe<Doc_Links_Bool_Exp>;
-};
-
-
-export type Subscription_RootDoc_VisitsArgs = {
-  distinct_on?: InputMaybe<Array<Doc_Visits_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Doc_Visits_Order_By>>;
-  where?: InputMaybe<Doc_Visits_Bool_Exp>;
-};
-
-
-export type Subscription_RootDoc_Visits_AggregateArgs = {
-  distinct_on?: InputMaybe<Array<Doc_Visits_Select_Column>>;
-  limit?: InputMaybe<Scalars['Int']>;
-  offset?: InputMaybe<Scalars['Int']>;
-  order_by?: InputMaybe<Array<Doc_Visits_Order_By>>;
-  where?: InputMaybe<Doc_Visits_Bool_Exp>;
-};
-
-
-export type Subscription_RootDoc_Visits_By_PkArgs = {
-  id: Scalars['uuid'];
 };
 
 
@@ -4464,17 +4503,31 @@ export type InsertDocLinkMutationVariables = Exact<{
 
 export type InsertDocLinkMutation = { __typename?: 'mutation_root', insertDocLink?: { __typename?: 'doc_links', id: any } | null };
 
+export type GetDocVisitsByDocIdQueryVariables = Exact<{
+  docId: Scalars['uuid'];
+}>;
+
+
+export type GetDocVisitsByDocIdQuery = { __typename?: 'query_root', docVisits: Array<{ __typename?: 'docVisits', id: any, city?: string | null, country?: string | null, createdAt: any, docLink: { __typename?: 'doc_links', id: any, name: string } }> };
+
+export type InsertDocVisitsMutationVariables = Exact<{
+  docVisit: Array<DocVisits_Insert_Input> | DocVisits_Insert_Input;
+}>;
+
+
+export type InsertDocVisitsMutation = { __typename?: 'mutation_root', insertDocVisits?: { __typename?: 'docVisits_mutation_response', affected_rows: number } | null };
+
 export type GetDocsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetDocsQuery = { __typename?: 'query_root', docs: Array<{ __typename?: 'docs', id: any, createdAt: any, name: string, docLinks: Array<{ __typename?: 'doc_links', id: any, createdAt: any, docVisits_aggregate: { __typename?: 'doc_visits_aggregate', aggregate?: { __typename?: 'doc_visits_aggregate_fields', count: number } | null } }>, user: { __typename?: 'users', id: any, avatarUrl: string, displayName: string, isAnonymous: boolean } }> };
+export type GetDocsQuery = { __typename?: 'query_root', docs: Array<{ __typename?: 'docs', id: any, createdAt: any, name: string, docLinks: Array<{ __typename?: 'doc_links', id: any, createdAt: any, docVisits_aggregate: { __typename?: 'docVisits_aggregate', aggregate?: { __typename?: 'docVisits_aggregate_fields', count: number } | null } }>, user: { __typename?: 'users', id: any, avatarUrl: string, displayName: string } }> };
 
 export type GetDocQueryVariables = Exact<{
   id: Scalars['uuid'];
 }>;
 
 
-export type GetDocQuery = { __typename?: 'query_root', doc?: { __typename?: 'docs', id: any, name: string, docLinks: Array<{ __typename?: 'doc_links', id: any, createdAt: any }> } | null };
+export type GetDocQuery = { __typename?: 'query_root', doc?: { __typename?: 'docs', id: any, name: string, docLinks: Array<{ __typename?: 'doc_links', id: any, name: string, createdAt: any, requireEmailToView: boolean, downloadAllowed: boolean, passcode?: string | null }> } | null };
 
 export type InsertDocMutationVariables = Exact<{
   doc: Docs_Insert_Input;
@@ -4525,8 +4578,50 @@ export const useInsertDocLinkMutation = <
       (variables?: InsertDocLinkMutationVariables) => fetchData<InsertDocLinkMutation, InsertDocLinkMutationVariables>(InsertDocLinkDocument, variables)(),
       options
     );
+export const GetDocVisitsByDocIdDocument = `
+    query GetDocVisitsByDocId($docId: uuid!) {
+  docVisits(where: {docLink: {docId: {_eq: $docId}}}, order_by: {createdAt: desc}) {
+    id
+    city
+    country
+    createdAt
+    docLink {
+      id
+      name
+    }
+  }
+}
+    `;
+export const useGetDocVisitsByDocIdQuery = <
+      TData = GetDocVisitsByDocIdQuery,
+      TError = unknown
+    >(
+      variables: GetDocVisitsByDocIdQueryVariables,
+      options?: UseQueryOptions<GetDocVisitsByDocIdQuery, TError, TData>
+    ) =>
+    useQuery<GetDocVisitsByDocIdQuery, TError, TData>(
+      ['GetDocVisitsByDocId', variables],
+      fetchData<GetDocVisitsByDocIdQuery, GetDocVisitsByDocIdQueryVariables>(GetDocVisitsByDocIdDocument, variables),
+      options
+    );
+export const InsertDocVisitsDocument = `
+    mutation InsertDocVisits($docVisit: [docVisits_insert_input!]!) {
+  insertDocVisits(objects: $docVisit) {
+    affected_rows
+  }
+}
+    `;
+export const useInsertDocVisitsMutation = <
+      TError = unknown,
+      TContext = unknown
+    >(options?: UseMutationOptions<InsertDocVisitsMutation, TError, InsertDocVisitsMutationVariables, TContext>) =>
+    useMutation<InsertDocVisitsMutation, TError, InsertDocVisitsMutationVariables, TContext>(
+      ['InsertDocVisits'],
+      (variables?: InsertDocVisitsMutationVariables) => fetchData<InsertDocVisitsMutation, InsertDocVisitsMutationVariables>(InsertDocVisitsDocument, variables)(),
+      options
+    );
 export const GetDocsDocument = `
-    query getDocs {
+    query GetDocs {
   docs {
     id
     createdAt
@@ -4544,7 +4639,6 @@ export const GetDocsDocument = `
       id
       avatarUrl
       displayName
-      isAnonymous
       avatarUrl
     }
   }
@@ -4558,18 +4652,22 @@ export const useGetDocsQuery = <
       options?: UseQueryOptions<GetDocsQuery, TError, TData>
     ) =>
     useQuery<GetDocsQuery, TError, TData>(
-      variables === undefined ? ['getDocs'] : ['getDocs', variables],
+      variables === undefined ? ['GetDocs'] : ['GetDocs', variables],
       fetchData<GetDocsQuery, GetDocsQueryVariables>(GetDocsDocument, variables),
       options
     );
 export const GetDocDocument = `
-    query getDoc($id: uuid!) {
+    query GetDoc($id: uuid!) {
   doc(id: $id) {
     id
     name
-    docLinks {
+    docLinks(order_by: {createdAt: desc}) {
       id
+      name
       createdAt
+      requireEmailToView
+      downloadAllowed
+      passcode
     }
   }
 }
@@ -4582,12 +4680,12 @@ export const useGetDocQuery = <
       options?: UseQueryOptions<GetDocQuery, TError, TData>
     ) =>
     useQuery<GetDocQuery, TError, TData>(
-      ['getDoc', variables],
+      ['GetDoc', variables],
       fetchData<GetDocQuery, GetDocQueryVariables>(GetDocDocument, variables),
       options
     );
 export const InsertDocDocument = `
-    mutation insertDoc($doc: docs_insert_input!) {
+    mutation InsertDoc($doc: docs_insert_input!) {
   insertDoc(object: $doc) {
     id
   }
@@ -4598,7 +4696,7 @@ export const useInsertDocMutation = <
       TContext = unknown
     >(options?: UseMutationOptions<InsertDocMutation, TError, InsertDocMutationVariables, TContext>) =>
     useMutation<InsertDocMutation, TError, InsertDocMutationVariables, TContext>(
-      ['insertDoc'],
+      ['InsertDoc'],
       (variables?: InsertDocMutationVariables) => fetchData<InsertDocMutation, InsertDocMutationVariables>(InsertDocDocument, variables)(),
       options
     );

@@ -1,4 +1,4 @@
-query getDocs {
+query GetDocs {
   docs {
     id
     createdAt
@@ -16,24 +16,27 @@ query getDocs {
       id
       avatarUrl
       displayName
-      isAnonymous
       avatarUrl
     }
   }
 }
 
-query getDoc($id: uuid!) {
+query GetDoc($id: uuid!) {
   doc(id: $id) {
     id
     name
-    docLinks {
+    docLinks(order_by: { createdAt: desc }) {
       id
+      name
       createdAt
+      requireEmailToView
+      downloadAllowed
+      passcode
     }
   }
 }
 
-mutation insertDoc($doc: docs_insert_input!) {
+mutation InsertDoc($doc: docs_insert_input!) {
   insertDoc(object: $doc) {
     id
   }

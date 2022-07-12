@@ -37,16 +37,18 @@ array_relationships:
 insert_permissions:
 - permission:
     backend_only: false
-    check:
-      bucket_id:
-        _eq: documents
+    check: {}
     columns:
+    - is_uploaded
+    - size
     - bucket_id
-    - id
+    - etag
     - mime_type
     - name
-    set:
-      uploaded_by_user_id: x-hasura-user-id
+    - created_at
+    - updated_at
+    - id
+    - uploaded_by_user_id
   role: user
 select_permissions:
 - permission:
@@ -62,8 +64,25 @@ select_permissions:
     - id
     - uploaded_by_user_id
     filter: {}
+    limit: 0
   role: public
 - permission:
+    columns:
+    - is_uploaded
+    - size
+    - bucket_id
+    - etag
+    - mime_type
+    - name
+    - created_at
+    - updated_at
+    - id
+    - uploaded_by_user_id
+    filter: {}
+  role: user
+update_permissions:
+- permission:
+    check: {}
     columns:
     - is_uploaded
     - size

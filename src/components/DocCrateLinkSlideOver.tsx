@@ -6,6 +6,7 @@ import { useInsertDocLinkMutation } from '../utils/__generated__/graphql'
 export function CreateLinkSlideOver({ docId }: { docId: string }) {
   const [open, setOpen] = useState(false)
 
+  const [linkName, setLinkName] = useState('')
   const [requireEmailToView, setRequireEmailToView] = useState(false)
   const [downloadAllowed, setDownloadAllowed] = useState(false)
 
@@ -19,6 +20,7 @@ export function CreateLinkSlideOver({ docId }: { docId: string }) {
 
     await mutation.mutate({
       docLink: {
+        name: linkName || 'random link name',
         docId,
         requireEmailToView,
         downloadAllowed,
@@ -78,6 +80,26 @@ export function CreateLinkSlideOver({ docId }: { docId: string }) {
                       </div>
                       <div className="mt-6 relative flex-1 px-4 sm:px-6">
                         <div className="mt-4 space-y-4">
+                          <div className="ml-7">
+                            <div>
+                              <label htmlFor="link-name" className="font-medium text-gray-700">
+                                Link Name
+                              </label>
+                            </div>
+                            <input
+                              type="text"
+                              name="first-name"
+                              id="first-name"
+                              autoComplete="given-name"
+                              className="shadow-sm  focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md p-2"
+                              placeholder="Link Name"
+                              value={linkName}
+                              onChange={(e) => {
+                                setLinkName(e.target.value)
+                              }}
+                              autoFocus={true}
+                            />
+                          </div>
                           <div className="flex items-start">
                             <div className="h-5 flex items-center">
                               <input

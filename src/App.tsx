@@ -12,7 +12,7 @@ import { Docs } from './components/Docs'
 import { DocUpload } from './components/DocUpload'
 import { DocsBase } from './components/DocsBase'
 import { Doc } from './components/Doc'
-import { PublicDocument } from './components/PublicDocumnet'
+import { PublicDocument } from './components/PublicDocument'
 import { NhostReactProvider } from '@nhost/react'
 
 import { QueryClient, QueryClientProvider } from 'react-query'

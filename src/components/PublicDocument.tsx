@@ -2,32 +2,57 @@ import { useParams } from 'react-router-dom'
 import { Document, Page, pdfjs } from 'react-pdf'
 
 // import { Document, Page } from "react-pdf";
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { nhost } from '../utils/nhost'
-import { useGetDocLinkQuery } from '../utils/__generated__/graphql'
+import { useGetDocLinkQuery, useInsertDocVisitsMutation } from '../utils/__generated__/graphql'
+import { fetchData } from '../utils/gql-fetcher'
 
 export function PublicDocument() {
   const { id } = useParams()
 
-  const [email, setEmail] = useState('')
-  const [passcode, setPasscode] = useState('')
-
-  const [allowedToView, setAllowedToView] = useState(false)
-
-  pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
   const [numPages, setNumPages] = useState<number | null>(null)
   const [pageNumber, setPageNumber] = useState(1)
+  const [email, setEmail] = useState('')
+  const [passcode, setPasscode] = useState('')
+  const [docVisit, setDocVisit] = useState(false)
+  const [allowedToView, setAllowedToView] = useState(false)
 
-  /*To Prevent right click on screen*/
-  document.addEventListener('contextmenu', (event) => {
-    event.preventDefault()
+  const mutation = useInsertDocVisitsMutation()
+
+  useEffect(() => {
+    const fetchData = async () => {
+      if (typeof id !== 'string') {
+        return
+      }
+
+      if (!docVisit) {
+        const ipInfoResponse = await fetch('https://ipapi.co/json/', {
+          method: 'GET',
+          headers: {
+            Accept: 'application/json'
+          }
+        }).then(async (res) => await res.json())
+
+        mutation.mutate({
+          docVisit: {
+            docLinkId: id,
+            country: ipInfoResponse.country_name,
+            city: ipInfoResponse.city
+          }
+        })
+
+        setDocVisit(true)
+      }
+    }
+
+    fetchData()
   })
 
+  // document
+  pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
   function onDocumentLoadSuccess({ numPages }: { numPages: number }) {
     setNumPages(numPages)
   }
-
-  console.log('file:')
 
   const { data, isLoading } = useGetDocLinkQuery({
     id

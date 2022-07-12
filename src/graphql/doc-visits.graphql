@@ -1,0 +1,18 @@
+query GetDocVisitsByDocId($docId: uuid!) {
+  docVisits(where: { docLink: { docId: { _eq: $docId } } }, order_by: { createdAt: desc }) {
+    id
+    city
+    country
+    createdAt
+    docLink {
+      id
+      name
+    }
+  }
+}
+
+mutation InsertDocVisits($docVisit: [docVisits_insert_input!]!) {
+  insertDocVisits(objects: $docVisit) {
+    affected_rows
+  }
+}

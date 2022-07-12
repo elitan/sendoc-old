@@ -1,22 +1,19 @@
-# Getting Started with Create React App
-
 ## TODO
 
-- New GraphQL client
-  - Probably GraphQL Query
-- Make current navigation working
-- Make upload documents look nice
-- Format dates in lists
-- Secure external doc links
-  - email required
-  - passcode
-  - allow downloads
-- Make viewing PDFs look nice
-- Trigger a “viewer” when looking at a document
-- List viewers per document
+- [ ] Make current navigation working
+- [ ] Make upload documents look nice
+- [ ] Format dates in lists
+- [ ] Secure external doc links
 
-- Hook up Stripe
-  - On free: only allow 5 documents
-  - Pay to allow 500 documents
+  - [ ] email required
+  - [ ] passcode
+  - [ ] allow downloads
 
-redeploy 3
+- [ ] Make viewing PDFs look nice
+- [ ] Insert "viewer" in database when someone visits a document
+- [ ] List viewers per document
+
+# Stripe
+
+- [ ] Free: 50 documents
+- [ ] Pro: 1,000 documents

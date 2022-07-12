@@ -11,15 +11,13 @@ export function SignIn() {
 
   const location = useLocation()
 
-  const navigate = useNavigate()
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
     await signInEmailPassword(email, password)
-
-    navigate('/', { replace: true })
   }
+
+  console.log({ isSuccess, isLoading, isError, error })
 
   if (isSuccess) {
     return <Navigate to="/" state={{ from: location }} />
@@ -96,6 +94,8 @@ export function SignIn() {
                 Sign In
               </button>
             </div>
+
+            {isError && <div>{error?.message}</div>}
             <div className="text-gray-600">
               Don't have an account?{' '}
               <Link to="/sign-up" className="text-indigo-500">
