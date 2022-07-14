@@ -1,5 +1,4 @@
 REMOVE
-
 - name: default
   kind: postgres
   configuration:
