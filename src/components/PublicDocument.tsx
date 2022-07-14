@@ -65,10 +65,6 @@ export function PublicDocument() {
   const { docLink } = data
 
   if (!docLink) {
-    return <div>No doclink found</div>
-  }
-
-  if (!docLink) {
     return <div>No doc link found</div>
   }
 
