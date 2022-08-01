@@ -1,15 +1,10 @@
 import { NhostClient } from '@nhost/react'
 
 const params = {
-  subdomain: process.env.REACT_APP_NHOST_SUBDOMAIN as string,
-  region: process.env.REACT_APP_NHOST_REGION as string
+  subdomain: import.meta.env.VITE_NHOST_SUBDOMAIN as string,
+  region: import.meta.env.VITE_NHOST_REGION as string
 }
 
-console.log({ params })
-
-const nhost = new NhostClient({
-  subdomain: process.env.REACT_APP_NHOST_SUBDOMAIN as string,
-  region: process.env.REACT_APP_NHOST_REGION as string
-})
+const nhost = new NhostClient(params)
 
 export { nhost }

@@ -86,8 +86,6 @@ export function PublicDocument() {
     )
   }
 
-  console.log({ docLink })
-
   const url = nhost.storage.getPublicUrl({
     fileId: docLink.doc.fileId
   })

@@ -17,8 +17,6 @@ export function SignIn() {
     await signInEmailPassword(email, password)
   }
 
-  console.log({ isSuccess, isLoading, isError, error })
-
   if (isSuccess) {
     return <Navigate to="/" state={{ from: location }} />
   }

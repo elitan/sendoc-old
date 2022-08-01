@@ -92,7 +92,7 @@ export function Doc() {
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
                     {doc.docLinks.map((docLink) => {
-                      const docLinkFormatted = `${process.env.REACT_APP_DOMAIN}/d/${docLink.id}`
+                      const docLinkFormatted = `${process.env.VITE_DOMAIN}/d/${docLink.id}`
 
                       return (
                         <tr key={docLink.id ?? 0}>
