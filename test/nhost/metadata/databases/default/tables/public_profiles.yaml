@@ -2,6 +2,9 @@ table:
   name: profiles
   schema: public
 configuration:
+  column_config:
+    stripe_customer_id:
+      custom_name: stripeCustomerId
   custom_column_names:
     stripe_customer_id: stripeCustomerId
   custom_name: profiles

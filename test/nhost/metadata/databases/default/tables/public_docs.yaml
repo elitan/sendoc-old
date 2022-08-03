@@ -2,6 +2,15 @@ table:
   name: docs
   schema: public
 configuration:
+  column_config:
+    created_at:
+      custom_name: createdAt
+    file_id:
+      custom_name: fileId
+    updated_at:
+      custom_name: updatedAt
+    user_id:
+      custom_name: userId
   custom_column_names:
     created_at: createdAt
     file_id: fileId
@@ -34,7 +43,6 @@ array_relationships:
         schema: public
 insert_permissions:
 - permission:
-    backend_only: false
     check: {}
     columns:
     - file_id

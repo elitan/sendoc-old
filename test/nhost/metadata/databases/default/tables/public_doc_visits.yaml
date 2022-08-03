@@ -2,6 +2,13 @@ table:
   name: doc_visits
   schema: public
 configuration:
+  column_config:
+    created_at:
+      custom_name: createdAt
+    doc_link_id:
+      custom_name: docLinkId
+    updated_at:
+      custom_name: updatedAt
   custom_column_names:
     created_at: createdAt
     doc_link_id: docLinkId
@@ -22,7 +29,6 @@ object_relationships:
     foreign_key_constraint_on: doc_link_id
 insert_permissions:
 - permission:
-    backend_only: false
     check: {}
     columns:
     - city
@@ -31,7 +37,6 @@ insert_permissions:
     - email
   role: public
 - permission:
-    backend_only: false
     check: {}
     columns:
     - doc_link_id

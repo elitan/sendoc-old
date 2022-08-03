@@ -1,0 +1,9 @@
+- definition:
+    query:
+      collection_name: allowed-queries
+      query_name: "123"
+  url: test
+  methods:
+  - GET
+  name: "123"
+  comment: null

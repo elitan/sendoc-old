@@ -2,6 +2,19 @@ table:
   name: doc_links
   schema: public
 configuration:
+  column_config:
+    created_at:
+      custom_name: createdAt
+    doc_id:
+      custom_name: docId
+    download_allowed:
+      custom_name: downloadAllowed
+    is_active:
+      custom_name: isActive
+    require_email_to_view:
+      custom_name: requireEmailToView
+    updated_at:
+      custom_name: updatedAt
   custom_column_names:
     created_at: createdAt
     doc_id: docId
@@ -28,7 +41,6 @@ array_relationships:
         schema: public
 insert_permissions:
 - permission:
-    backend_only: false
     check:
       doc:
         user_id:

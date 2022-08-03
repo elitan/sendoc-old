@@ -2,6 +2,23 @@ table:
   name: files
   schema: storage
 configuration:
+  column_config:
+    bucket_id:
+      custom_name: bucketId
+    created_at:
+      custom_name: createdAt
+    etag:
+      custom_name: etag
+    is_uploaded:
+      custom_name: isUploaded
+    mime_type:
+      custom_name: mimeType
+    size:
+      custom_name: size
+    updated_at:
+      custom_name: updatedAt
+    uploaded_by_user_id:
+      custom_name: uploadedByUserId
   custom_column_names:
     bucket_id: bucketId
     created_at: createdAt
@@ -36,7 +53,6 @@ array_relationships:
         schema: public
 insert_permissions:
 - permission:
-    backend_only: false
     check: {}
     columns:
     - is_uploaded
