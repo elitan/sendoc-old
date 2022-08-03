@@ -50,8 +50,7 @@ function AppRouter() {
           </RequireAuth>
         }
       >
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/docs" element={<DocsBase />}>
+        <Route path="/" element={<DocsBase />}>
           <Route path="" element={<Docs />} />
           <Route path="new" element={<DocUpload />} />
           <Route path=":id" element={<Doc />} />

@@ -58,7 +58,7 @@ export function DocsList() {
                   return (
                     <tr key={doc.id ?? 0}>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                        <Link to={`/docs/${doc.id}`}>{doc.name}</Link>
+                        <Link to={`/${doc.id}`}>{doc.name}</Link>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                         {formatDistanceToNowStrict(parseISO(doc.createdAt), {
