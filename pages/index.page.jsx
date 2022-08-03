@@ -22,9 +22,9 @@ function Page() {
       </ul>
       <hr />
       <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
         <Route path="*" element={<div>404</div>} />
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </>
   )
