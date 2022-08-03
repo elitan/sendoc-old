@@ -9,10 +9,10 @@ function Page() {
       <div>
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <a href="/">Home</a>
           </li>
           <li>
-            <Link to="/about">About</Link>
+            <a href="/about">About</a>
           </li>
         </ul>
       </div>
