@@ -24,6 +24,7 @@ function Page() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="*" element={<div>404</div>} />
       </Routes>
     </>
   )
