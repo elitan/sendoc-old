@@ -22,7 +22,7 @@ function Page() {
       </ul>
       <hr />
       <Routes>
-        <Route path="*" element={<div>404</div>} />
+        <Route path="*" element={<FoF />} />
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
       </Routes>
@@ -31,6 +31,7 @@ function Page() {
 }
 
 function Home() {
+  console.log('render home')
   return (
     <div>
       <h2>Home</h2>
@@ -43,6 +44,7 @@ function Home() {
 }
 
 function About() {
+  console.log('render about')
   return (
     <>
       <h2>About</h2>
@@ -53,6 +55,15 @@ function About() {
       <p>
         This page is rendered to HTML, see <Code>view-source:http://localhost:3000/about</Code>.
       </p>
+    </>
+  )
+}
+
+function FoF() {
+  console.log('render 404')
+  return (
+    <>
+      <div>404</div>
     </>
   )
 }
